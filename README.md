@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="./docs/assets/hero.svg" alt="考研英语 Codex Skill" width="100%" />
+  <img src="./docs/assets/hero.svg" alt="Echo_考研英语SKILL" width="100%" />
 </div>
 
 <p align="center">
-  <a href="https://github.com/nghjjnjnf/kaoyan-english/actions/workflows/validate.yml"><img alt="校验状态" src="https://img.shields.io/github/actions/workflow/status/nghjjnjnf/kaoyan-english/validate.yml?branch=main&style=flat-square&label=%E6%A0%A1%E9%AA%8C"></a>
+  <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/actions/workflows/validate.yml"><img alt="校验状态" src="https://img.shields.io/github/actions/workflow/status/nghjjnjnf/echo-kaoyan-english-skill/validate.yml?branch=main&style=flat-square&label=%E6%A0%A1%E9%AA%8C"></a>
   <img alt="版本" src="https://img.shields.io/badge/version-0.1.0-13795B?style=flat-square">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-E85D3F?style=flat-square"></a>
@@ -35,7 +35,7 @@
 在 Codex 中输入：
 
 ```text
-$skill-installer install https://github.com/nghjjnjnf/kaoyan-english/tree/main/skills/kaoyan-english
+$skill-installer install https://github.com/nghjjnjnf/echo-kaoyan-english-skill/tree/main/skills/kaoyan-english
 ```
 
 安装完成后重启 Codex，使新 skill 被发现。
@@ -43,7 +43,7 @@ $skill-installer install https://github.com/nghjjnjnf/kaoyan-english/tree/main/s
 ### 方式二：手动安装
 
 ```powershell
-git clone https://github.com/nghjjnjnf/kaoyan-english.git
+git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills" | Out-Null
 Copy-Item -Recurse ".\kaoyan-english\skills\kaoyan-english" "$env:USERPROFILE\.codex\skills\kaoyan-english"
 python -m pip install -r ".\kaoyan-english\requirements.txt"
@@ -52,7 +52,7 @@ python -m pip install -r ".\kaoyan-english\requirements.txt"
 macOS 或 Linux：
 
 ```bash
-git clone https://github.com/nghjjnjnf/kaoyan-english.git
+git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
 mkdir -p ~/.codex/skills
 cp -R kaoyan-english/skills/kaoyan-english ~/.codex/skills/kaoyan-english
 python3 -m pip install -r kaoyan-english/requirements.txt

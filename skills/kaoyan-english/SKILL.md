@@ -3,7 +3,7 @@ name: kaoyan-english
 description: 考研英语一和英语二备考 skill，支持历年真题知识库检索、阅读/完形/翻译逐题精析、作文按考研标准评分批改、基于外刊的模拟阅读和完形出题，并可结合考研词汇表控制难度。Use when users ask about 考研英语真题、英一/英二、阅读 Text、完形填空、翻译、作文批改、考研英语模拟题、外刊阅读训练、题目选项讲解、答案依据、长难句分析、错题复盘。
 ---
 
-# Kaoyan English
+# Echo_考研英语SKILL
 
 ## Core Workflow
 

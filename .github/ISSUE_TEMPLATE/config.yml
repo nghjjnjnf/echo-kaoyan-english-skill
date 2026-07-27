@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: 安全问题
-    url: https://github.com/nghjjnjnf/kaoyan-english/security/advisories/new
+    url: https://github.com/nghjjnjnf/echo-kaoyan-english-skill/security/advisories/new
     about: 请通过私密安全报告提交漏洞。
