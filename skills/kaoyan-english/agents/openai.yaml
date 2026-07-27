@@ -1,0 +1,4 @@
+interface:
+  display_name: "考研英语"
+  short_description: "考研英语真题逐题精析、作文评分批改与外刊模拟训练助手"
+  default_prompt: "使用 $kaoyan-english 讲解考研英语真题、批改作文或生成外刊模拟训练。"
