@@ -17,10 +17,13 @@ def default_records_dir():
 
 
 def read_json_arg(value):
+    stripped = value.strip()
+    if stripped.startswith("{") or stripped.startswith("["):
+        return json.loads(stripped)
     path = Path(value)
     if path.is_file():
         return json.loads(path.read_text(encoding="utf-8"))
-    return json.loads(value)
+    return json.loads(stripped)
 
 
 def write_markdown(record, path):
