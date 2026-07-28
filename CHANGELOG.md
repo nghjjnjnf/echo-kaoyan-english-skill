@@ -6,6 +6,9 @@
 
 ### Changed
 
+- 将 `skills/kaoyan-english/SKILL.md` 重构为路由器式入口：主文件只保留触发边界、任务路由、知识库查找顺序、答案安全和全局渲染规则。
+- 阅读、完形、全文翻译、翻译评分、作文和模拟题的具体输出要求统一交给对应 `references/rubrics/` 或 `references/strategies/` 文件，降低规则漂移和上下文浪费。
+- `scripts/validate_repo.py` 增加 router-style 约束，防止主 `SKILL.md` 再次膨胀并重复题型细则。
 - 将项目优先支持范围收敛为 Codex 和 Claude Code。
 - README 改为只展示 Codex / Claude Code 的安装与客户端支持信息。
 - `AGENTS.md` 项目定位更新为 Codex 和 Claude Code。

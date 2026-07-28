@@ -65,7 +65,13 @@ def validate_skill():
     require(text.startswith("---\n"), "SKILL.md must start with YAML frontmatter")
     require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "SKILL.md name is incorrect")
     require(re.search(r"(?m)^description:\s*.+$", text), "SKILL.md missing description")
-    require(len(text.splitlines()) <= 500, "SKILL.md exceeds 500 lines; move detail to references")
+    require(len(text.splitlines()) <= 140, "SKILL.md should stay router-style; move task details to references")
+    for drift_phrase in (
+        "Always include:",
+        "When grading a user's essay, return:",
+        "When generating a model essay, return:",
+    ):
+        require(drift_phrase not in text, f"SKILL.md contains duplicated task-detail phrase: {drift_phrase}")
     for relative in (
         "references/rubrics/reading-analysis.md",
         "references/rubrics/cloze-analysis.md",
