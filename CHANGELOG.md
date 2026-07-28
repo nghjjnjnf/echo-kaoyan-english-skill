@@ -6,6 +6,7 @@
 
 ### Changed
 
+- README 首页主视觉图文案从 `SKILL · for Codex` 调整为 `SKILL · for 考研er`，让定位更贴近备考用户。
 - README 典型用法改为更贴近真实用户提问的自然表达，避免把内部输出格式规则写进示例 prompt。
 - README 快速开始补充最简单使用方式：把 GitHub 仓库地址直接交给 Codex 或 Claude Code。
 - README 导航栏和主要模块标题加入小图标，提升 GitHub 项目主页的可读性和视觉层次。
