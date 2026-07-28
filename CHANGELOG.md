@@ -6,8 +6,9 @@
 
 ### Changed
 
+- README 首页图改用新的 `hero-kaoyaner.svg` 路径，避免 GitHub 对旧 SVG 路径的缓存继续显示旧文案。
 - README 将“核心亮点”改为“核心能力”，并重写为更面向学习者收益的项目介绍。
-- README 首页主视觉图文案从 `SKILL · for Codex` 调整为 `SKILL · for 考研er`，让定位更贴近备考用户。
+- README 首页主视觉图文案调整为 `SKILL · for 考研er`，让定位更贴近备考用户。
 - README 典型用法改为更贴近真实用户提问的自然表达，避免把内部输出格式规则写进示例 prompt。
 - README 快速开始补充最简单使用方式：把 GitHub 仓库地址直接交给 Codex 或 Claude Code。
 - README 导航栏和主要模块标题加入小图标，提升 GitHub 项目主页的可读性和视觉层次。

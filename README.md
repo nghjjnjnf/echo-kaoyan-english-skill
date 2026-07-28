@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./docs/assets/hero.svg" alt="Echo_考研英语SKILL" width="100%" />
+  <img src="./docs/assets/hero-kaoyaner.svg" alt="Echo_考研英语SKILL" width="100%" />
 </div>
 
 <p align="center">
