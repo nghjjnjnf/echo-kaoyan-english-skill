@@ -14,3 +14,7 @@ skills/kaoyan-english/assets/raw-papers/**
 
 # Local-only corpus overlays generated during import
 skills/kaoyan-english/references/corpus-index.local.json
+
+# Local practice records
+skills/kaoyan-english/local-records/
+.kaoyan-english-records/

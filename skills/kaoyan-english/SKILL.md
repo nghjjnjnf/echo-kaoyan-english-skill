@@ -118,13 +118,17 @@ When generating a model essay, return:
 
 For external-source practice reading or cloze tasks:
 
-1. Use a legitimate source summary or user-provided article text when available.
-2. Do not reproduce long copyrighted source passages verbatim unless provided by the user for private processing.
-3. Adapt the passage to 考研英语 difficulty and replace out-of-scope vocabulary with words from the user's 考研词汇 list when available.
-4. Generate questions in the style of English I/II reading or cloze.
-5. Keep answers hidden until the user submits responses or asks for the key.
+1. Read `references/strategies/simulation-generation.md`.
+2. Prefer user-provided text or whitelisted moderate-difficulty sources. Use `scripts/fetch_source_article.py` for source extraction when the user provides a URL.
+3. Adapt the source into an original 考研英语-style passage before writing questions. Avoid overly technical topics, dense terminology, and close paraphrase of copyrighted sources.
+4. Generate reading or cloze questions in the style of English I/II.
+5. In practice mode, show only the adapted passage and questions. Do not reveal the answer key or explanations until the user submits answers or asks for them.
+6. When the user asks for answers, explain with the same reading/cloze evidence and distractor-analysis standards used for past-paper questions.
+7. If the user asks to record the practice, save the adapted passage, questions, user answers, and explanation with `scripts/record_practice.py`.
 
 ## Scripts
 
 - `scripts/import_docx_papers.py`: import a DOCX containing past papers into `references/papers/`, split by year and section, and build indexes.
 - `scripts/search_papers.py`: quickly locate a year/section/question and print the relevant corpus paths and answer.
+- `scripts/fetch_source_article.py`: extract text from whitelisted external sources for simulation practice.
+- `scripts/record_practice.py`: save local simulation practice records after the user answers.

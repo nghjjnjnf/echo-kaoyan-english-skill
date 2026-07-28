@@ -47,6 +47,8 @@ def validate_skill():
         "references/rubrics/writing-rubric.md",
         "scripts/import_docx_papers.py",
         "scripts/search_papers.py",
+        "scripts/fetch_source_article.py",
+        "scripts/record_practice.py",
     ):
         require((SKILL / relative).is_file(), f"缺少 {relative}")
 
