@@ -80,6 +80,14 @@ Do not put user-facing prose in fenced code blocks such as ```text or ```markdow
 
 Use fenced code blocks only for commands, JSON, scripts, logs, or file-format examples.
 
+## Template Compliance Gate
+
+Before sending any rubric-governed answer, internally check the response against the loaded rubric's exact required headings and required content. If any required heading, excerpt, translation, complete question/options, wrong-option analysis, correct-option analysis, or review section is missing, revise the answer before sending it.
+
+Do not rename, merge, skip, or summarize required rubric sections. For example, do not replace `相关原文截取` with `定位原文`, do not omit `中文参考翻译`, and do not replace `完整题目` with a paraphrase of the stem.
+
+If the required source text, full question stem, options, or answer key has not been loaded yet, perform the corpus lookup before answering. Do not produce a short answer as a fallback unless the user explicitly asks for answer-only output.
+
 ## Local Script Policy
 
 Prefer bundled scripts for deterministic maintenance, import, validation, generated-exercise saving, practice-record saving, vocabulary checks, and response-contract checks.

@@ -169,7 +169,7 @@ class SimulationScriptsTest(unittest.TestCase):
                 encoding="utf-8",
             )
             response.write_text(
-                "\n".join(["题目陷阱分类", "相关原文截取", "中文参考翻译", "完整题目", "题干在问什么", "其他选项为什么错", "为什么选择", "本题复盘"]),
+                "\n".join(["题目陷阱分类", "相关原文截取", "中文参考翻译", "完整题目", "题干在问什么", "其他选项为什么错", "为什么选 C", "本题复盘"]),
                 encoding="utf-8",
             )
             vocab_result = subprocess.run(
@@ -195,6 +195,22 @@ class SimulationScriptsTest(unittest.TestCase):
                 text=True,
                 encoding="utf-8",
             )
+
+    def test_rejects_reading_response_with_renamed_heading(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            response = Path(temp_dir) / "bad_reading.md"
+            response.write_text(
+                "\n".join(["题目陷阱分类", "定位原文", "完整题目", "题干在问什么", "其他选项为什么错", "为什么选 D", "本题复盘"]),
+                encoding="utf-8",
+            )
+            result = subprocess.run(
+                [sys.executable, str(CONTRACT_SCRIPT), str(response), "--type", "reading"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("missing heading: 相关原文截取", result.stderr)
 
     def test_validates_passage_translation_contract(self):
         with tempfile.TemporaryDirectory() as temp_dir:

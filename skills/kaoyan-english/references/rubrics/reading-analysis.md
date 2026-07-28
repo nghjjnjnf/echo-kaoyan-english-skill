@@ -29,6 +29,23 @@ Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, qu
 
 Use exactly this structure.
 
+## Template Compliance Gate
+
+The following eight headings are mandatory and must appear exactly as written for every single reading question:
+
+1. `题目陷阱分类`
+2. `相关原文截取`
+3. `中文参考翻译`
+4. `完整题目`
+5. `题干在问什么`
+6. `其他选项为什么错`
+7. `为什么选 [Answer]`
+8. `本题复盘`
+
+Before finalizing, check the draft against this list. If any heading is missing, renamed, merged, or replaced by a similar heading such as `定位原文`, rewrite the answer before sending it.
+
+Every reading explanation must include the full question stem and all A-D options with Chinese translations. If the full stem/options are not in context, load the relevant corpus file before answering. Do not produce a shortened answer that only gives evidence and a few option comments.
+
 ## Professional Style Reference
 
 Use the following as the professional style template for reading explanations. It is a style reference, not a replacement for the required section order above: keep `题目陷阱分类 -> 相关原文截取 -> 中文参考翻译 -> 完整题目 -> 题干在问什么 -> 其他选项为什么错 -> 为什么选 [Answer] -> 本题复盘`.

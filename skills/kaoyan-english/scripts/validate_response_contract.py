@@ -12,17 +12,18 @@ CONTRACTS = {
         "完整题目",
         "题干在问什么",
         "其他选项为什么错",
-        "为什么选择",
+        "为什么选",
         "本题复盘",
     ],
     "cloze": [
-        "题目陷阱分类",
+        "空格陷阱分类",
         "相关原文截取",
         "中文参考翻译",
         "完整题目",
+        "空格处需要什么",
         "其他选项为什么错",
-        "为什么选择",
-        "本题复盘",
+        "为什么选",
+        "本空复盘",
     ],
     "passage-translation": [
         "文章定位",
@@ -45,6 +46,11 @@ CONTRACTS = {
 
 
 def main():
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8")
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
     parser = argparse.ArgumentParser(description="Validate whether a generated response contains required rubric headings.")
     parser.add_argument("response_file")
     parser.add_argument("--type", choices=sorted(CONTRACTS), required=True)
@@ -55,6 +61,9 @@ def main():
     if missing:
         for heading in missing:
             print(f"ERROR: missing heading: {heading}", file=sys.stderr)
+        raise SystemExit(1)
+    if args.type == "reading" and "定位原文" in text and "相关原文截取" not in text:
+        print("ERROR: reading responses must use heading 相关原文截取, not 定位原文", file=sys.stderr)
         raise SystemExit(1)
     if "```" in text:
         print("ERROR: explanation responses must use paragraphs, blockquotes, or lists instead of fenced code blocks", file=sys.stderr)

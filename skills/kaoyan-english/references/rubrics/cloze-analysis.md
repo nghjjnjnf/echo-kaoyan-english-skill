@@ -24,6 +24,23 @@ Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, qu
 
 Use exactly this structure.
 
+## Template Compliance Gate
+
+The following eight headings are mandatory and must appear exactly as written for every single cloze blank:
+
+1. `空格陷阱分类`
+2. `相关原文截取`
+3. `中文参考翻译`
+4. `完整题目`
+5. `空格处需要什么`
+6. `其他选项为什么错`
+7. `为什么选 [Answer]`
+8. `本空复盘`
+
+Before finalizing, check the draft against this list. If any heading is missing, renamed, merged, or replaced by a similar heading, rewrite the answer before sending it.
+
+Every cloze explanation must include the full blank-containing sentence, the Chinese translation of the quoted context, and all A-D options in the horizontal cloze layout. If the full context/options are not in context, load the relevant corpus file before answering. Do not produce a shortened answer that only gives the answer and a few option comments.
+
 ## Professional Style Reference
 
 Use the following as the professional style template for cloze explanations. It is a style reference, not a replacement for the required section order below: keep `空格陷阱分类 -> 相关原文截取 -> 中文参考翻译 -> 完整题目 -> 空格处需要什么 -> 其他选项为什么错 -> 为什么选 [Answer] -> 本空复盘`.
