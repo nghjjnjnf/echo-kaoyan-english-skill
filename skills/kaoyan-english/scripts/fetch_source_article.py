@@ -38,6 +38,14 @@ SOURCE_POLICIES = {
     },
 }
 
+THIRD_PARTY_MARKERS = (
+    "associated press",
+    "reuters",
+    "agence france-presse",
+    "afp",
+    "ap news",
+)
+
 
 class ArticleParser(HTMLParser):
     def __init__(self):
@@ -106,6 +114,21 @@ def is_useful_paragraph(text):
     return not any(item in lowered for item in boilerplate)
 
 
+def quality_warnings(title, paragraphs):
+    joined = " ".join(paragraphs).lower()
+    warnings = []
+    if not title:
+        warnings.append("missing_title")
+    if len(paragraphs) < 3:
+        warnings.append("few_paragraphs")
+    if word_count(paragraphs) < 250:
+        warnings.append("short_extracted_text")
+    for marker in THIRD_PARTY_MARKERS:
+        if marker in joined:
+            warnings.append(f"third_party_marker:{marker}")
+    return warnings
+
+
 def normalize_domain(url):
     domain = urlparse(url).netloc.lower()
     if domain.startswith("www.learningenglish.voanews.com"):
@@ -160,6 +183,8 @@ def main():
         "title": title,
         "word_count": word_count(paragraphs),
         "paragraphs": paragraphs,
+        "paragraph_count": len(paragraphs),
+        "quality_warnings": quality_warnings(title, paragraphs),
         "agent_next_step": (
             "Adapt this article into a kaoyan-style original practice passage."
             if policy["mode"] != "theme_only"

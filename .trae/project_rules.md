@@ -1,9 +1,11 @@
 # Echo_考研英语SKILL Trae Project Rules
 
-Use this repository as an agent-ready 考研英语 skill project.
+Use this repository as an agent-ready 考研英语 skill project for 考研英语真题、英一、英二、阅读、完形/完型、翻译、作文批改、考研英语模拟题、模拟阅读、模拟完形/完型、外刊出题、外刊改编、VOA 阅读、抓取文章、生成练习、保存练习记录 and 错题复盘.
 
 Primary rules live in `skills/kaoyan-english/SKILL.md`.
 
 Additional Trae-facing notes live in `.trae/rules/kaoyan-english.md`.
 
 Before answering a 考研英语 request, identify the exam track, year, section, and task type. Then read `skills/kaoyan-english/references/corpus-index.json` and only the needed paper or rubric files.
+
+Do not route unrelated generic reading, translation, writing, or coding tasks to this skill unless the user explicitly connects the task to 考研英语, 英一, 英二, 真题, 备考, 模拟题, or 外刊训练.

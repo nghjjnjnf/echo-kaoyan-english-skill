@@ -76,6 +76,7 @@ def main():
     parser.add_argument("--questions-file")
     parser.add_argument("--analysis-file")
     parser.add_argument("--user-answers", help='JSON string or file, for example {"1":"A","2":"C"}.')
+    parser.add_argument("--answer-key", help='JSON string or file, for example {"1":"B","2":"C"}.')
     args = parser.parse_args()
 
     if args.record_json:
@@ -90,6 +91,7 @@ def main():
             "questions": Path(args.questions_file).read_text(encoding="utf-8") if args.questions_file else "",
             "analysis": Path(args.analysis_file).read_text(encoding="utf-8") if args.analysis_file else "",
             "user_answers": read_json_arg(args.user_answers) if args.user_answers else {},
+            "answer_key": read_json_arg(args.answer_key) if args.answer_key else {},
         }
 
     created_at = record.get("created_at") or dt.datetime.now().isoformat(timespec="seconds")

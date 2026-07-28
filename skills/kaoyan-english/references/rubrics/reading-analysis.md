@@ -6,6 +6,8 @@ Use this for 考研英语 Reading Comprehension Part A explanations.
 
 When explaining a reading question, use an evidence-first, paragraph-rich style. Do not give short fragmented comments such as "A 错，原文没说". Each explanation paragraph should be substantial enough for a student to understand both the answer logic and the mistake pattern.
 
+Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, question text, options, translations, and explanations. Do not use fenced code blocks for passages, full questions, option lists, or model answer prose, because they do not wrap well in Codex.
+
 1. Start with question trap classification. Identify exam track, year, text number, question number, official answer, question type, and the core trap pattern the question is testing.
 2. Paste the smallest relevant original paragraph excerpt(s), not the whole passage.
 3. Mark evidence directly inside the original excerpt. Bold the relevant sentence or phrase and add a Chinese parenthetical label immediately after it:
@@ -69,18 +71,20 @@ Display the full question stem and all options exactly as they appear in the cor
 
 Use this format:
 
-```text
-21. Full question stem...
+21. Full question stem...  
 中文：完整题干中文翻译。
-[A] Full option A.
+
+[A] Full option A.  
 中文：A 选项中文翻译。
-[B] Full option B.
+
+[B] Full option B.  
 中文：B 选项中文翻译。
-[C] Full option C.
+
+[C] Full option C.  
 中文：C 选项中文翻译。
-[D] Full option D.
+
+[D] Full option D.  
 中文：D 选项中文翻译。
-```
 
 ### 题干在问什么
 
@@ -97,11 +101,9 @@ Explain the wrong options before the correct-option analysis. Do not write `已�
 
 Use this format for each option:
 
-```markdown
-A. `[A] Full option text.`
-分析：...
+A. [A] Full option text.  
+分析：...  
 陷阱类型：...
-```
 
 Each wrong-option explanation should be a complete paragraph, not a one-line dismissal. Never analyze an option without first showing its full original wording.
 

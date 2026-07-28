@@ -231,7 +231,12 @@ echo-kaoyan-english-skill/
 |   |-- agents/openai.yaml
 |   |-- scripts/
 |   |   |-- import_docx_papers.py
-|   |   `-- search_papers.py
+|   |   |-- search_papers.py
+|   |   |-- fetch_source_article.py
+|   |   |-- save_exercise.py
+|   |   |-- validate_generated_exercise.py
+|   |   |-- record_practice.py
+|   |   `-- review_mistakes.py
 |   `-- references/
 |       |-- corpus-index.json
 |       |-- rubrics/
@@ -257,7 +262,9 @@ python -m unittest discover -s tests -v
 - [x] 英一/英二翻译差异化评分
 - [x] 英一/英二大小作文分档批改
 - [x] DOCX 真题清理、拆分与索引
-- [ ] 用户词汇表导入与覆盖率报告
+- [x] 用户词汇表覆盖率报告
+- [x] 模拟题结构化保存、词数校验与答案隐藏检查
+- [x] 阅读/完形/作文输出契约回归检查
 - [ ] 更稳健的多来源文档解析
 - [ ] 可复现的提示词评测集
 - [ ] 更多新题型专项规则
@@ -272,4 +279,3 @@ python -m unittest discover -s tests -v
 - 阅读、完形、翻译、作文评分规则补充
 - 更好的示例 prompt 和输出样例
 - 测试用例、文档纠错和安装体验优化
-

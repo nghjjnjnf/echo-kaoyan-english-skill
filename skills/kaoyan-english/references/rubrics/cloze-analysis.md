@@ -8,6 +8,8 @@ If `cloze.md` contains an `Echo 完形整体难点评析与易错点总结` bloc
 
 When explaining a cloze blank, use a context-first, option-comparison style. Do not give short comments such as "A 搭配正确". Each explanation should show why the blank needs a specific word or phrase and why nearby alternatives fail.
 
+Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, question text, options, translations, and explanations. Do not use fenced code blocks for cloze context, option lists, or answer prose, because they force horizontal scrolling in Codex.
+
 1. Start with blank trap classification. Identify exam track, year, section, blank number, official answer, test point, and the core trap pattern.
 2. Paste the smallest useful context, but always display the full sentence containing the blank without ellipses. Add the previous or next sentence only when needed for logic, reference, contrast, or cohesion; if included, display those sentences fully by default.
 3. Mark the blank directly inside the excerpt as `**___ 5 ___**（空格：...）`. Bold the word or phrase that controls the answer and add labels such as `（搭配：...）`, `（语法：...）`, `（逻辑：...）`, `（指代：...）`, or `（复现：...）`.
@@ -44,11 +46,9 @@ If the previous or next sentence is needed, display that sentence fully by defau
 
 Use this format:
 
-```markdown
 > Full previous sentence if needed.
 > Full sentence with **___ 5 ___**（空格：需要判断...） and **key local clue**（搭配/语法/逻辑：...）.
 > Full following sentence if needed.
-```
 
 ### 中文参考翻译
 
@@ -56,11 +56,9 @@ Translate the quoted context into natural Chinese. Keep labels after the corresp
 
 Use this format:
 
-```markdown
 > 上一句中文，如果需要。
 > 带有**第 5 空**（空格：需要判断...）和**关键线索**（搭配/语法/逻辑：...）的句子中文。
 > 下一句中文，如果需要。
-```
 
 ### 完整题目
 
@@ -68,11 +66,9 @@ Display the blank number and all options exactly as they appear in the corpus. F
 
 Use this format:
 
-```text
 5.
 [A] Full option A.    [B] Full option B.    [C] Full option C.    [D] Full option D.
 中文：[A] A 选项中文翻译。    [B] B 选项中文翻译。    [C] C 选项中文翻译。    [D] D 选项中文翻译。
-```
 
 ### 空格处需要什么
 
@@ -97,12 +93,10 @@ Explain the wrong options before the correct-option analysis. Do not write `已�
 
 Use this format for each option:
 
-```markdown
-A. `[A] Full option text.`
-中文：...
-分析：...
+A. [A] Full option text.  
+中文：...  
+分析：...  
 陷阱类型：...
-```
 
 Each wrong-option explanation should be a complete paragraph, not a one-line dismissal.
 

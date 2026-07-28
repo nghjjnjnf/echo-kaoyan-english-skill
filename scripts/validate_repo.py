@@ -17,29 +17,29 @@ def require(condition, message):
 
 def validate_manifest():
     path = ROOT / ".codex-plugin" / "plugin.json"
-    require(path.is_file(), "缺少 .codex-plugin/plugin.json")
+    require(path.is_file(), "missing .codex-plugin/plugin.json")
     if not path.is_file():
         return
     data = json.loads(path.read_text(encoding="utf-8"))
-    require(data.get("name") == "kaoyan-english", "plugin name 必须是 kaoyan-english")
-    require(bool(re.fullmatch(r"\d+\.\d+\.\d+", data.get("version", ""))), "version 必须使用严格语义版本")
-    require(data.get("skills") == "./skills/", "skills 路径必须是 ./skills/")
-    require(data.get("license") == "MIT", "manifest 许可应为 MIT")
+    require(data.get("name") == "kaoyan-english", "plugin name must be kaoyan-english")
+    require(bool(re.fullmatch(r"\d+\.\d+\.\d+", data.get("version", ""))), "version must use semantic versioning")
+    require(data.get("skills") == "./skills/", "skills path must be ./skills/")
+    require(data.get("license") == "MIT", "manifest license must be MIT")
     interface = data.get("interface", {})
     for field in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
-        require(bool(interface.get(field)), f"manifest interface 缺少 {field}")
+        require(bool(interface.get(field)), f"manifest interface missing {field}")
 
 
 def validate_skill():
     path = SKILL / "SKILL.md"
-    require(path.is_file(), "缺少 skills/kaoyan-english/SKILL.md")
+    require(path.is_file(), "missing skills/kaoyan-english/SKILL.md")
     if not path.is_file():
         return
     text = path.read_text(encoding="utf-8")
-    require(text.startswith("---\n"), "SKILL.md 必须以 YAML frontmatter 开始")
-    require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "SKILL.md name 不正确")
-    require(re.search(r"(?m)^description:\s*.+$", text), "SKILL.md 缺少 description")
-    require(len(text.splitlines()) <= 500, "SKILL.md 超过 500 行，应拆分到 references")
+    require(text.startswith("---\n"), "SKILL.md must start with YAML frontmatter")
+    require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "SKILL.md name is incorrect")
+    require(re.search(r"(?m)^description:\s*.+$", text), "SKILL.md missing description")
+    require(len(text.splitlines()) <= 500, "SKILL.md exceeds 500 lines; move detail to references")
     for relative in (
         "references/rubrics/reading-analysis.md",
         "references/rubrics/cloze-analysis.md",
@@ -49,8 +49,15 @@ def validate_skill():
         "scripts/search_papers.py",
         "scripts/fetch_source_article.py",
         "scripts/record_practice.py",
+        "scripts/save_exercise.py",
+        "scripts/validate_generated_exercise.py",
+        "scripts/check_vocabulary_coverage.py",
+        "scripts/audit_corpus.py",
+        "scripts/list_practice_records.py",
+        "scripts/review_mistakes.py",
+        "scripts/validate_response_contract.py",
     ):
-        require((SKILL / relative).is_file(), f"缺少 {relative}")
+        require((SKILL / relative).is_file(), f"missing {relative}")
 
 
 def validate_json_files():
@@ -58,7 +65,7 @@ def validate_json_files():
         try:
             json.loads(path.read_text(encoding="utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-            ERRORS.append(f"无效 JSON: {path.relative_to(ROOT)}: {exc}")
+            ERRORS.append(f"invalid JSON: {path.relative_to(ROOT)}: {exc}")
 
 
 def validate_public_data_boundary():
@@ -87,10 +94,10 @@ def validate_public_data_boundary():
                 data = json.loads(path.read_text(encoding="utf-8"))
                 if "source_docx" in data:
                     invalid_meta.append(relative)
-    require(not forbidden, "公开仓库包含应排除的数据文件: " + ", ".join(forbidden))
-    require(not invalid_paper_files, "真题知识库包含不允许的文件类型: " + ", ".join(invalid_paper_files))
-    require(not invalid_answers, "answers.json 不应包含作文答案: " + ", ".join(invalid_answers))
-    require(not invalid_meta, "meta.json 不应包含本机原始 Word 路径: " + ", ".join(invalid_meta))
+    require(not forbidden, "public repo contains excluded raw data files: " + ", ".join(forbidden))
+    require(not invalid_paper_files, "paper corpus contains unsupported file types: " + ", ".join(invalid_paper_files))
+    require(not invalid_answers, "answers.json must not contain writing answers: " + ", ".join(invalid_answers))
+    require(not invalid_meta, "meta.json must not contain local source_docx paths: " + ", ".join(invalid_meta))
 
 
 def validate_agent_compatibility():
@@ -121,6 +128,48 @@ def validate_agent_compatibility():
         if path.is_file():
             text = path.read_text(encoding="utf-8")
             require(canonical in text, f"{relative} should point to {canonical}")
+
+    trigger_terms = (
+        "考研英语真题",
+        "英一",
+        "英二",
+        "阅读",
+        "完形",
+        "完型",
+        "翻译",
+        "作文批改",
+        "模拟阅读",
+        "模拟完形",
+        "外刊出题",
+        "抓取文章",
+        "保存练习记录",
+    )
+    for relative in (
+        "AGENTS.md",
+        ".claude/skills/kaoyan-english/SKILL.md",
+        ".cursor/rules/kaoyan-english.mdc",
+        ".cursor/rules/kaoyan-english/RULE.md",
+        ".trae/project_rules.md",
+        ".trae/rules/kaoyan-english.md",
+    ):
+        path = ROOT / relative
+        if path.is_file():
+            text = path.read_text(encoding="utf-8")
+            missing = [term for term in trigger_terms if term not in text]
+            require(not missing, f"{relative} missing trigger terms: {', '.join(missing)}")
+
+    guard_phrase = "generic reading, translation, writing, or coding tasks"
+    for relative in (
+        "AGENTS.md",
+        ".cursor/rules/kaoyan-english.mdc",
+        ".cursor/rules/kaoyan-english/RULE.md",
+        ".trae/project_rules.md",
+        ".trae/rules/kaoyan-english.md",
+    ):
+        path = ROOT / relative
+        if path.is_file():
+            text = path.read_text(encoding="utf-8")
+            require(guard_phrase in text, f"{relative} missing non-kaoyan trigger guard")
 
     claude_skill = ROOT / ".claude" / "skills" / "kaoyan-english" / "SKILL.md"
     if claude_skill.is_file():

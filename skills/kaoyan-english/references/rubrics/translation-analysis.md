@@ -24,6 +24,8 @@ Output structure:
 
 Keep Chinese natural, but do not omit logical relations, negation, subjects, modifiers, or abstract nouns that carry meaning.
 
+Use ordinary Markdown paragraphs or blockquotes for all user-facing source text, user translations, reference translations, corrected translations, and explanations. Do not use fenced code blocks for translation answers or translation scoring prose.
+
 ## Translation Grading Mode
 
 Use this mode when the user submits a translation. Before scoring, identify the exam track because English I and English II use different translation formats and point totals.
@@ -66,11 +68,9 @@ Include:
 
 Use this format:
 
-```markdown
 原句/原文：...
 用户译文：...
 参考译文：...
-```
 
 If the user gives more than one translation for the same sentence, list every version and state that multiple-version scoring rules apply.
 For English II, display the passage or the minimum complete passage portion needed to grade the user's submitted translation.

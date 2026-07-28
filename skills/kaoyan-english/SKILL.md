@@ -1,6 +1,6 @@
 ---
 name: kaoyan-english
-description: 考研英语一和英语二备考 skill，支持历年真题知识库检索、阅读/完形/翻译逐题精析、作文按考研标准评分批改、基于外刊的模拟阅读和完形出题，并可结合考研词汇表控制难度。Use when users ask about 考研英语真题、英一/英二、阅读 Text、完形填空、翻译、作文批改、考研英语模拟题、外刊阅读训练、题目选项讲解、答案依据、长难句分析、错题复盘。
+description: 考研英语一和英语二备考 skill，支持历年真题知识库检索、阅读/完形/完型/翻译逐题精析、作文按考研标准评分批改、基于本地原创或外刊来源的模拟阅读和完形/完型出题、生成练习保存与错题复盘，并可结合考研词汇表控制难度。Use when users ask about 考研英语真题、英一、英语一、英二、英语二、阅读、阅读理解、阅读 Text、Text 1/Text 2/Text 3/Text 4、完形填空、完型填空、完形、完型、翻译、作文、作文批改、大小作文、考研英语模拟题、模拟阅读、模拟完形、模拟完型、外刊阅读训练、外刊出题、外刊改编、VOA 阅读、抓取文章、生成练习、保存练习记录、题目选项讲解、答案依据、长难句分析、错题复盘。Only use for explicit 考研英语/英一/英二/备考 contexts; do not use for unrelated generic reading, translation, writing, or coding tasks.
 ---
 
 # Echo_考研英语SKILL
@@ -12,6 +12,13 @@ description: 考研英语一和英语二备考 skill，支持历年真题知识�
 3. For past-paper tasks, read `references/corpus-index.json` first, then load only the requested year/section file from `references/papers/`.
 4. For answer-sensitive tasks, avoid loading `answers.json` until the user asks for an answer/explanation or submits their own answer.
 5. For generated practice, read `references/strategies/simulation-generation.md` and use `references/vocabulary/` if the user provides a vocabulary list.
+6. Do not activate for a general English reading, translation, writing, or coding request unless the user explicitly connects it to 考研英语, 英一, 英二, 真题, 备考, 模拟题, or 外刊训练.
+
+## User-Facing Output Rendering
+
+For all explanations, model essays, original excerpts, question stems, options, translations, and corrected answers, use ordinary Markdown paragraphs or blockquotes so text wraps naturally in Codex and other clients. Do not place user-facing prose in fenced code blocks such as ```text or ```markdown.
+
+Use fenced code blocks only for actual commands, JSON, scripts, logs, or file-format examples. If a notice, essay, passage, question, or option list needs line breaks, use plain lines, blockquotes, or Markdown lists instead of code fences.
 
 ## Past Paper Knowledge Base
 
@@ -119,16 +126,26 @@ When generating a model essay, return:
 For external-source practice reading or cloze tasks:
 
 1. Read `references/strategies/simulation-generation.md`.
-2. Prefer user-provided text or whitelisted moderate-difficulty sources. Use `scripts/fetch_source_article.py` for source extraction when the user provides a URL.
-3. Adapt the source into an original 考研英语-style passage before writing questions. Avoid overly technical topics, dense terminology, and close paraphrase of copyrighted sources.
-4. Generate reading or cloze questions in the style of English I/II.
-5. In practice mode, show only the adapted passage and questions. Do not reveal the answer key or explanations until the user submits answers or asks for them.
-6. When the user asks for answers, explain with the same reading/cloze evidence and distractor-analysis standards used for past-paper questions.
-7. If the user asks to record the practice, save the adapted passage, questions, user answers, and explanation with `scripts/record_practice.py`.
+2. Prefer local original generation by default when the user asks for 模拟阅读/模拟完形/外刊训练 without providing a URL or explicitly requesting a real source.
+3. After local generation, briefly ask whether the user wants a future exercise adapted from a real external article. Do not fetch real articles by default.
+4. If the user provides a URL or confirms they want a real article, first check fetch conditions: network/tool access, `scripts/fetch_source_article.py` availability, and whether the source domain is whitelisted. If any condition is missing, fall back to local original generation or ask the user to paste the article text.
+5. Adapt any accepted source into an original 考研英语-style passage before writing questions. Avoid overly technical topics, dense terminology, and close paraphrase of copyrighted sources.
+6. Generate reading or cloze questions in the style of English I/II.
+7. Save a structured exercise draft with `scripts/save_exercise.py` when a durable local artifact is useful, then validate it with `scripts/validate_generated_exercise.py` before showing it.
+8. In practice mode, show only the adapted passage and questions. Do not reveal the answer key or explanations until the user submits answers or asks for them.
+9. When the user asks for answers, explain with the same reading/cloze evidence and distractor-analysis standards used for past-paper questions. For important examples, check the response headings with `scripts/validate_response_contract.py`.
+10. If the user asks to record the practice after answering, save the adapted passage, questions, user answers, answer key, and explanation with `scripts/record_practice.py`. Use `scripts/list_practice_records.py` and `scripts/review_mistakes.py` for later错题复盘.
 
 ## Scripts
 
 - `scripts/import_docx_papers.py`: import a DOCX containing past papers into `references/papers/`, split by year and section, and build indexes.
 - `scripts/search_papers.py`: quickly locate a year/section/question and print the relevant corpus paths and answer.
 - `scripts/fetch_source_article.py`: extract text from whitelisted external sources for simulation practice.
+- `scripts/save_exercise.py`: save generated reading/cloze exercises with hidden answer keys before the user answers.
+- `scripts/validate_generated_exercise.py`: verify generated exercise word count, question count, option completeness, and answer-key leakage.
+- `scripts/check_vocabulary_coverage.py`: compare a generated passage with user-provided vocabulary lists and surface likely out-of-scope words.
+- `scripts/audit_corpus.py`: audit corpus year folders, question maps, section files, and objective-answer coverage.
 - `scripts/record_practice.py`: save local simulation practice records after the user answers.
+- `scripts/list_practice_records.py`: list local practice-record JSON files.
+- `scripts/review_mistakes.py`: summarize wrong answers from a saved practice record.
+- `scripts/validate_response_contract.py`: check whether generated explanations include the required rubric headings.

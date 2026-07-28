@@ -9,6 +9,8 @@ Choose the mode from the user's request:
 - **Writing grading mode**: use when the user provides their own essay and asks for scoring, 批改, 修改, 润色, 扣分原因, or 提分建议.
 - **Model essay mode**: use when the user asks for 作文答案, 范文, 参考作文, 高分作文, or asks how to write a specific year's writing task.
 
+Use ordinary Markdown paragraphs for all model essays, corrected essays, notices, letters, and revision prose. Do not wrap essays or notices in fenced code blocks. If a small-writing notice or letter needs line breaks, use plain lines with blank lines between parts so Codex can wrap long sentences naturally.
+
 ## Score Totals
 
 Identify the exam track and writing task before scoring.
@@ -49,6 +51,50 @@ Apply the same qualitative criteria across tasks, but map them to the correct po
 | 第二档 | 3-4 | 5-8 | 4-6 | 未能按要求完成任务；遗漏或无效表达较多，有无关内容；语法结构单调、词汇有限；错误较多并影响理解；衔接不足，格式或语体不当。 |
 | 第一档 | 1-2 | 1-4 | 1-3 | 内容严重不足或偏题；语言错误频繁，读者难以理解；结构混乱；基本没有完成交际目的。 |
 | 零分 | 0 | 0 | 0 | 空白、完全跑题、照抄无关内容，或几乎无法判断为有效英文作文。 |
+
+## Dimension Scoring Guide
+
+Use this as a quantitative aid before assigning the final band. The final score must still match the band descriptors above.
+
+For a 10-point small writing task:
+
+| Dimension | Points | What to check |
+|---|---:|---|
+| Task completion and content | 3 | Whether all required information, communicative purpose, recipient, and format are covered. |
+| Organization and cohesion | 2 | Whether ideas are ordered naturally and connected with appropriate transitions. |
+| Grammar and sentence control | 2 | Whether tense, agreement, clauses, articles, prepositions, and sentence boundaries are reliable. |
+| Vocabulary and register | 2 | Whether word choice, collocation, tone, and politeness match the task. |
+| Mechanics | 1 | Spelling, punctuation, capitalization, signature, and layout. |
+
+For English I Part B large writing out of 20, scale the same dimensions as follows:
+
+| Dimension | Points |
+|---|---:|
+| Task completion, picture/topic interpretation, and argument relevance | 6 |
+| Content development and reasoning | 4 |
+| Organization and paragraph logic | 3 |
+| Grammar and sentence variety | 3 |
+| Vocabulary range, collocation, and register | 3 |
+| Mechanics | 1 |
+
+For English II Part B large writing out of 15, scale the same dimensions as follows:
+
+| Dimension | Points |
+|---|---:|
+| Task completion, chart/topic interpretation, and relevance | 5 |
+| Content development and reasoning | 3 |
+| Organization and paragraph logic | 2 |
+| Grammar and sentence control | 2 |
+| Vocabulary range, collocation, and register | 2 |
+| Mechanics | 1 |
+
+Deduction anchors:
+
+- Severe task mismatch or missing required genre usually caps the answer at the third band even if some sentences are fluent.
+- Mostly irrelevant content caps the answer at the second band.
+- Several grammar errors that repeatedly block understanding cap the answer at the second or low third band.
+- Template-like language that does not respond to the specific prompt should lose task-completion and content-development points.
+- Word count that is clearly too short should reduce task completion and content development; excessive length should reduce organization and relevance when it creates repetition or off-task content.
 
 ## Writing Grading Mode
 
@@ -96,8 +142,8 @@ Summarize what the prompt asks the student to do. For small writing, identify th
 
 Use this table:
 
-| 维度 | 表现 | 扣分原因 | 建议 |
-|---|---|---|---|
+| 维度 | 分值 | 得分 | 表现 | 扣分原因 | 建议 |
+|---|---:|---:|---|---|---|
 
 Cover task completion, content, organization, grammar, vocabulary, cohesion, and format/register.
 

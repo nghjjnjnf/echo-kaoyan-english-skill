@@ -2,6 +2,8 @@
 
 Echo_考研英语SKILL 采用“一份核心规则，多种 Agent 入口”的结构。核心能力放在 `skills/kaoyan-english/SKILL.md`，不同工具只通过自己的项目规则文件引用它。
 
+所有入口只应在明确的考研英语、英一、英二、真题、备考、模拟题或外刊训练语境下使用。普通英文阅读、翻译、写作或代码任务不要自动套用本 skill。
+
 ## Codex
 
 Codex 的标准入口是：
@@ -49,4 +51,5 @@ Trae 的项目规则入口是：
 - 只把完整行为写在 `skills/kaoyan-english/SKILL.md` 和 `references/` 中。
 - 其他入口文件只写触发、路径和约束，不复制完整解析模板。
 - 修改题型规则后，优先更新核心 skill 和 rubrics，再检查各工具入口是否仍然指向正确路径。
+- 修改触发词后，运行 `python scripts/validate_repo.py` 检查 Codex、Claude Code、Cursor 和 Trae 入口是否同步。
 - 提交前运行 `python scripts/validate_repo.py` 和单元测试。
