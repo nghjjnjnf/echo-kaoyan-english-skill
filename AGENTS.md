@@ -37,6 +37,8 @@ Do not load the whole corpus into context unless a repository maintenance task g
 
 Do not answer broad past-paper requests with a generic short summary. If the user says things like "解析 2021 年阅读理解", "讲一下 2023 年英一完形", or "2024 年英语二阅读怎么做", first resolve the exam track, year, and task type, then route to the canonical rubric.
 
+Known failure mode: previous answers were sometimes too brief for first-time users. Before answering, load the task-specific rubric or strategy and follow that template completely; do not rely on a generic explanation pattern.
+
 - If the exam track is missing and both English I and English II exist for that year, ask only for the track.
 - If the exam track, year, and task type are known, start directly instead of asking the user to narrow the scope.
 - Broad reading requests should show an answer table for the requested reading scope, then begin with Reading Text 1 or the first requested text, explaining at most five questions with the full `reading-analysis.md` format.

@@ -24,3 +24,5 @@ Do not duplicate or reinterpret the full rubric here. The canonical skill and it
 Do not route unrelated generic reading, translation, writing, or coding tasks to this wrapper unless the user explicitly connects the task to 考研英语, 英一, 英二, 真题, 备考, 模拟题, or 外刊训练.
 
 When a past-paper request is broad, such as "解析 2021 年阅读理解" or "讲一下 2023 年英一完形", do not give a short generic summary. Read the canonical skill, resolve the exam track/year/task, load the relevant rubric, and start the required batch response. Ask only for English I vs English II when that distinction is missing and affects the answer.
+
+Known failure mode: previous answers were sometimes too brief for first-time users. Before answering, load the task-specific rubric or strategy and follow that template completely; do not rely on a generic explanation pattern.

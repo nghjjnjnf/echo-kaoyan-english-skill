@@ -27,6 +27,8 @@ def validate_manifest():
     interface = data.get("interface", {})
     for field in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
         require(bool(interface.get(field)), f"manifest interface missing {field}")
+    default_prompt = " ".join(interface.get("defaultPrompt", []))
+    require("回答过于简略" in default_prompt, "manifest defaultPrompt missing brief-answer failure-mode reminder")
 
 
 def validate_claude_plugin():
@@ -95,6 +97,7 @@ def validate_skill():
 
     require("## Broad Request Policy" in text, "SKILL.md missing broad request policy")
     require("Do not treat broad past-paper requests as generic summaries" in text, "SKILL.md missing broad-request no-shortcut guard")
+    require("previous answers were sometimes too brief" in text, "SKILL.md missing brief-answer failure-mode reminder")
 
 
 def validate_json_files():
@@ -233,6 +236,12 @@ def validate_client_entries():
         if path.is_file():
             text = path.read_text(encoding="utf-8")
             require("Broad Request Policy" in text or "past-paper request is broad" in text, f"{relative} missing broad request policy")
+            require("previous answers were sometimes too brief" in text, f"{relative} missing brief-answer failure-mode reminder")
+
+    openai_yaml = SKILL / "agents" / "openai.yaml"
+    if openai_yaml.is_file():
+        text = openai_yaml.read_text(encoding="utf-8")
+        require("回答过于简略" in text, "agents/openai.yaml missing brief-answer failure-mode reminder")
 
     claude_skill = ROOT / ".claude" / "skills" / "kaoyan-english" / "SKILL.md"
     if claude_skill.is_file():

@@ -30,6 +30,8 @@ The Claude Code skill wrapper at `.claude/skills/kaoyan-english/SKILL.md` points
 
 Do not turn broad past-paper requests into short generic answers. If the user asks "解析 2021 年阅读理解", "讲一下 2023 年英一完形", "2024 年英语二阅读怎么做", or similar, use the canonical skill router and the relevant rubric.
 
+Known failure mode: previous answers were sometimes too brief for first-time users. Before answering, load the task-specific rubric or strategy and follow that template completely; do not rely on a generic explanation pattern.
+
 - If English I vs English II is missing and both exist for the requested year, ask only for the track.
 - If the track, year, and task type are known, start the structured response immediately.
 - For broad reading, show the answer table for the requested scope, then begin with Reading Text 1 or the first requested text, with at most five questions per response in the full reading format.

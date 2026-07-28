@@ -30,6 +30,8 @@ Do not activate for unrelated generic English reading, translation, writing, or 
 
 Do not treat broad past-paper requests as generic summaries. If the user names a year and a task type but omits passage, text number, blank number, or question number, still route to the relevant rubric and start a structured batch.
 
+Known failure mode: previous answers were sometimes too brief for first-time users. Before answering any reading, cloze, translation, passage-translation, writing, or simulation task, remind yourself to load the corresponding rubric or strategy and follow that template completely. Do not rely on a generic answer pattern.
+
 Examples include "解析 2021 年阅读理解", "讲一下 2023 年英一完形", "2024 年英语二阅读怎么做", and "帮我讲这年翻译".
 
 Handle broad requests as follows:
