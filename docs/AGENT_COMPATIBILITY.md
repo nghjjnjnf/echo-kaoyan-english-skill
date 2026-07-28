@@ -31,8 +31,9 @@ Cursor 的项目规则入口是：
 
 - `AGENTS.md`
 - `.cursor/rules/kaoyan-english.mdc`
+- `.cursor/rules/kaoyan-english/RULE.md`
 
-使用方式：在 Cursor 中打开仓库，Agent 处理考研英语相关问题时会读取项目规则，并按规则进入 `skills/kaoyan-english/SKILL.md` 与对应知识库文件。
+使用方式：在 Cursor 中打开仓库，Agent 处理考研英语相关问题时会读取项目规则，并按规则进入 `skills/kaoyan-english/SKILL.md` 与对应知识库文件。仓库同时保留 `.mdc` 文件和 `RULE.md` 目录版入口，以兼容不同版本和不同团队设置。
 
 ## Trae
 

@@ -90,7 +90,7 @@ python3 -m pip install -r echo-kaoyan-english-skill/requirements.txt
 | --- | --- | --- |
 | Codex | `.codex-plugin/plugin.json`、`skills/kaoyan-english/SKILL.md` | 通过 Skill Installer 安装，或手动复制到 `~/.codex/skills/kaoyan-english` |
 | Claude Code | `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md` | 克隆仓库后在 Claude Code 中打开项目，按项目记忆与 skill wrapper 读取核心规则 |
-| Cursor | `AGENTS.md`、`.cursor/rules/kaoyan-english.mdc` | 在 Cursor 中打开仓库，Agent 会从项目规则进入核心 skill |
+| Cursor | `AGENTS.md`、`.cursor/rules/kaoyan-english.mdc`、`.cursor/rules/kaoyan-english/RULE.md` | 在 Cursor 中打开仓库，Agent 会从项目规则进入核心 skill |
 | Trae | `.trae/project_rules.md`、`.trae/rules/kaoyan-english.md` | 在 Trae 中打开仓库，先读取项目规则，再读取核心 skill |
 
 详细说明见 [多 Agent 使用指南](./docs/AGENT_COMPATIBILITY.md)。
@@ -224,6 +224,7 @@ echo-kaoyan-english-skill/
 |-- .codex-plugin/plugin.json
 |-- .claude/skills/kaoyan-english/SKILL.md
 |-- .cursor/rules/kaoyan-english.mdc
+|-- .cursor/rules/kaoyan-english/RULE.md
 |-- .trae/project_rules.md
 |-- skills/kaoyan-english/
 |   |-- SKILL.md
@@ -271,5 +272,4 @@ python -m unittest discover -s tests -v
 - 阅读、完形、翻译、作文评分规则补充
 - 更好的示例 prompt 和输出样例
 - 测试用例、文档纠错和安装体验优化
-
 

@@ -97,6 +97,7 @@ def validate_agent_compatibility():
         "CLAUDE.md",
         ".claude/skills/kaoyan-english/SKILL.md",
         ".cursor/rules/kaoyan-english.mdc",
+        ".cursor/rules/kaoyan-english/RULE.md",
         ".trae/project_rules.md",
         ".trae/rules/kaoyan-english.md",
         "docs/AGENT_COMPATIBILITY.md",
@@ -109,6 +110,7 @@ def validate_agent_compatibility():
         "AGENTS.md",
         "CLAUDE.md",
         ".cursor/rules/kaoyan-english.mdc",
+        ".cursor/rules/kaoyan-english/RULE.md",
         ".trae/project_rules.md",
         ".trae/rules/kaoyan-english.md",
         "docs/AGENT_COMPATIBILITY.md",
@@ -130,6 +132,12 @@ def validate_agent_compatibility():
         text = cursor_rule.read_text(encoding="utf-8")
         require(text.startswith("---\n"), "Cursor rule must start with MDC frontmatter")
         require("description:" in text and "alwaysApply:" in text, "Cursor rule frontmatter is incomplete")
+
+    cursor_rule_folder = ROOT / ".cursor" / "rules" / "kaoyan-english" / "RULE.md"
+    if cursor_rule_folder.is_file():
+        text = cursor_rule_folder.read_text(encoding="utf-8")
+        require(text.startswith("---\n"), "Cursor RULE.md must start with frontmatter")
+        require("description:" in text and "alwaysApply:" in text, "Cursor RULE.md frontmatter is incomplete")
 
 
 def main():
