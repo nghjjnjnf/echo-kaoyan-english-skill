@@ -9,7 +9,8 @@
 - 英语一：2010-2026 年。
 - 英语二：2010-2026 年。
 - 目录：`skills/kaoyan-english/references/papers/`。
-- 索引：`skills/kaoyan-english/references/corpus-index.json`。
+- 快速索引：`skills/kaoyan-english/references/index.json`，用于按英一/英二、年份、题型和题号直接定位题型文件与答案。
+- 年份索引：`skills/kaoyan-english/references/corpus-index.json`，用于记录可用年份、章节清单和回退检索。
 
 ## 支持的导入输入
 
@@ -51,6 +52,9 @@ python skills/kaoyan-english/scripts/import_docx_papers.py \
 查询某年某题：
 
 ```bash
+python skills/kaoyan-english/scripts/build_index.py \
+  --skill skills/kaoyan-english
+
 python skills/kaoyan-english/scripts/search_papers.py \
   --exam english-i \
   --year 2025 \
@@ -86,12 +90,14 @@ references/papers/<exam>/<year>/
 
 每批导入后至少检查：
 
-1. `corpus-index.json` 中是否出现正确年份。
-2. `meta.json` 中题型文件是否完整。
-3. `question-map.json` 是否将题号映射到正确篇目。
-4. `answers.json` 是否将选择题答案放在正确题型下。
-5. 阅读原文是否缺段，翻译下划线句是否完整。
-6. 是否还残留页码、公众号、二维码说明或机构广告。
+1. 运行 `build_index.py` 重新生成 `index.json`。
+2. `index.json` 中是否能直接查到目标题号。
+3. `corpus-index.json` 中是否出现正确年份。
+4. `meta.json` 中题型文件是否完整。
+5. `question-map.json` 是否将题号映射到正确篇目。
+6. `answers.json` 是否将选择题答案放在正确题型下。
+7. 阅读原文是否缺段，翻译下划线句是否完整。
+8. 是否还残留页码、公众号、二维码说明或机构广告。
 
 ## 词汇表
 

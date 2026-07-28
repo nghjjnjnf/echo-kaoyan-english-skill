@@ -8,6 +8,37 @@ def load_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def print_from_index(skill, exam, year, question=None, section=None):
+    index_path = skill / "references" / "index.json"
+    if not index_path.is_file():
+        return False
+    index = load_json(index_path)
+    year_entry = index.get("exams", {}).get(exam, {}).get("years", {}).get(str(year))
+    if not year_entry:
+        return False
+
+    year_dir = skill / year_entry["path"]
+    print(f"year_dir={year_dir}")
+    print(f"sections={', '.join(year_entry.get('sections', {}).keys())}")
+
+    if question:
+        item = year_entry.get("questions", {}).get(str(question))
+        if not item:
+            raise SystemExit(f"Question {question} not found in {index_path}")
+        print(f"question={question}")
+        print(f"section={item['section']}")
+        print(f"file={skill / item['path']}")
+        if "answer" in item:
+            print(f"answer={item['answer']}")
+
+    if section:
+        item = year_entry.get("sections", {}).get(section)
+        if not item:
+            raise SystemExit(f"Section {section} not found in {index_path}")
+        print(f"file={skill / item['path']}")
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description="Locate kaoyan English paper resources.")
     parser.add_argument("--skill", default=str(Path(__file__).resolve().parents[1]))
@@ -18,6 +49,9 @@ def main():
     args = parser.parse_args()
 
     skill = Path(args.skill)
+    if print_from_index(skill, args.exam, args.year, args.question, args.section):
+        return
+
     year_dir = skill / "references" / "papers" / args.exam / str(args.year)
     if not year_dir.exists():
         raise SystemExit(f"Missing year directory: {year_dir}")

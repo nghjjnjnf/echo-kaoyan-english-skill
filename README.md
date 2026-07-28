@@ -71,7 +71,7 @@
 | 作文批改 | `按 2024 年英二大作文标准批改这篇作文` | 分档评分、逐句修改、给出改后版本、结构建议和可复用表达 |
 | 范文生成 | `给我一篇扎实版和高级版范文` | 根据英一/英二、小作文/大作文分值和题型要求生成两档范文 |
 | 模拟训练 | `生成一篇考研英语一难度外刊阅读题` | 控制文章难度，生成题目，隐藏答案，等用户作答后再批改 |
-| 真题检索 | `查 2023 年英一阅读 Text 3 的答案和题号映射` | 从 `corpus-index.json`、`question-map.json` 和题型文件定位材料 |
+| 真题检索 | `查 2023 年英一阅读 Text 3 的答案和题号映射` | 优先从 `index.json` 按英一/英二、年份、题型和题号直接定位材料 |
 
 ## 🚀 快速开始
 
@@ -171,6 +171,7 @@ python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
 
 ```text
 references/
+|-- index.json
 |-- corpus-index.json
 `-- papers/
     |-- english-i/
@@ -281,6 +282,7 @@ echo-kaoyan-english-skill/
 |   |-- SKILL.md
 |   |-- agents/openai.yaml
 |   |-- scripts/
+|   |   |-- build_index.py
 |   |   |-- import_docx_papers.py
 |   |   |-- search_papers.py
 |   |   |-- fetch_source_article.py
@@ -289,6 +291,7 @@ echo-kaoyan-english-skill/
 |   |   |-- record_practice.py
 |   |   `-- review_mistakes.py
 |   `-- references/
+|       |-- index.json
 |       |-- corpus-index.json
 |       |-- rubrics/
 |       |-- strategies/

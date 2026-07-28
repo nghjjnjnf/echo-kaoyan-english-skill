@@ -21,7 +21,7 @@ Do not activate for unrelated generic English reading, translation, writing, or 
 
 1. Identify the exam track: English I (`english-i`) or English II (`english-ii`). If missing, infer from year, section, file path, or user context. Ask only when the distinction changes the answer.
 2. Identify the task type using the routing table below.
-3. For past-paper tasks, read `references/corpus-index.json` first. Then load only the requested year, section, question map, and answer file needed for the task.
+3. For past-paper tasks, read `references/index.json` first for direct lookup. Fall back to `references/corpus-index.json` and year-level maps only when the direct index is unavailable or incomplete.
 4. For answer-sensitive tasks, do not load `answers.json` until the user asks for an answer/explanation, submits their own answer, or requests grading.
 5. Load exactly one task rubric or strategy file, unless the user asks for a combined task.
 6. Follow the loaded rubric as the output contract. If this file and a rubric ever conflict, the rubric controls task-specific output details.
@@ -43,6 +43,7 @@ Do not activate for unrelated generic English reading, translation, writing, or 
 
 Use corpus files as the source of truth for past-paper tasks:
 
+- `references/index.json`: direct exam/year/section/question lookup index for fast routing.
 - `references/corpus-index.json`: available exams, years, and file paths.
 - `references/papers/<exam>/<year>/meta.json`: year-level metadata and section inventory.
 - `references/papers/<exam>/<year>/question-map.json`: question number to section/file mapping.
@@ -51,11 +52,11 @@ Use corpus files as the source of truth for past-paper tasks:
 
 Lookup order:
 
-1. Read `references/corpus-index.json`.
-2. Resolve exam, year, section, passage/text number, and question number.
-3. Read `meta.json` and `question-map.json` for the resolved year when needed.
-4. Read the smallest relevant section file.
-5. Read `answers.json` only when the answer is needed.
+1. Read `references/index.json`.
+2. Resolve exam, year, section, passage/text number, and question number from the direct index.
+3. Read the smallest relevant section file from the indexed `path`.
+4. Use the indexed answer when available and answer access is allowed.
+5. Fall back to `corpus-index.json`, `meta.json`, `question-map.json`, and `answers.json` only when `index.json` is missing or incomplete.
 
 If the user's wording is ambiguous:
 

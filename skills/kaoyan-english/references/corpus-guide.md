@@ -21,9 +21,15 @@ Recommended files per year:
 
 Lookup order:
 
-1. Read `corpus-index.json`.
-2. Read the target year `meta.json`.
-3. Read the smallest relevant section file.
-4. Read `answers.json` only for grading, answer checking, or explanation.
+1. Read `index.json` for direct `exam -> year -> section/question` lookup.
+2. Read the smallest relevant section file from the indexed path.
+3. Use indexed answers only for grading, answer checking, or explanation.
+4. Fall back to `corpus-index.json`, target-year `meta.json`, `question-map.json`, and `answers.json` only when `index.json` is missing or incomplete.
 
 Use stable IDs like `english-i-2014-reading-text-2-q26`.
+
+Regenerate `index.json` after corpus changes:
+
+```bash
+python skills/kaoyan-english/scripts/build_index.py --skill skills/kaoyan-english
+```

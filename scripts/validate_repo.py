@@ -77,7 +77,9 @@ def validate_skill():
         "references/rubrics/translation-analysis.md",
         "references/rubrics/passage-translation.md",
         "references/rubrics/writing-rubric.md",
+        "references/index.json",
         "scripts/import_docx_papers.py",
+        "scripts/build_index.py",
         "scripts/search_papers.py",
         "scripts/fetch_source_article.py",
         "scripts/record_practice.py",
@@ -98,6 +100,21 @@ def validate_json_files():
             json.loads(path.read_text(encoding="utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
             ERRORS.append(f"invalid JSON: {path.relative_to(ROOT)}: {exc}")
+
+
+def validate_lookup_index():
+    path = SKILL / "references" / "index.json"
+    if not path.is_file():
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    require(data.get("version") == 1, "references/index.json version must be 1")
+    exams = data.get("exams", {})
+    require("english-i" in exams and "english-ii" in exams, "references/index.json must include english-i and english-ii")
+    sample = exams.get("english-i", {}).get("years", {}).get("2025", {}).get("questions", {}).get("21")
+    require(bool(sample), "references/index.json missing sample lookup english-i/2025/q21")
+    if sample:
+        require(sample.get("path") == "references/papers/english-i/2025/reading-text-1.md", "sample q21 path is incorrect")
+        require(sample.get("answer") == "C", "sample q21 answer is incorrect")
 
 
 def validate_changelog():
@@ -217,6 +234,7 @@ def main():
     validate_claude_plugin()
     validate_skill()
     validate_json_files()
+    validate_lookup_index()
     validate_changelog()
     validate_public_data_boundary()
     validate_client_entries()
