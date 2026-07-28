@@ -11,7 +11,7 @@ Treat common student wording such as "为什么这么选", "为什么选", "怎�
 Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, question text, options, translations, and explanations. Do not use fenced code blocks for passages, full questions, option lists, or model answer prose, because they do not wrap well in Codex.
 
 1. Start with question trap classification. Identify exam track, year, text number, question number, official answer, question type, and the core trap pattern the question is testing.
-2. Paste the smallest relevant original paragraph excerpt(s), not the whole passage.
+2. Paste the evidence context window, not only the single evidence sentence. Include up to three sentences before and three sentences after the locating sentence within the same paragraph; if the paragraph has fewer surrounding sentences or the window would cross paragraph boundaries, show the whole paragraph instead.
 3. Mark evidence directly inside the original excerpt. Bold the relevant sentence or phrase and add a Chinese parenthetical label immediately after it:
    - `**...**（定位句：...）` for the sentence that directly supports the answer.
    - `**...**（辅助句：...）` for sentences needed to understand contrast, cause, background, example, or conclusion.
@@ -83,7 +83,7 @@ If the user claims a different answer from the indexed answer, state the indexed
 
 ### 相关原文截取
 
-Paste only the paragraph excerpt(s) needed to solve the question. Keep the original English. Bold the exact sentence or phrase that matters, and put the label in Chinese parentheses immediately after the bold part.
+Paste the paragraph excerpt(s) needed to solve the question. Keep the original English. Do not quote only one locating sentence. For each decisive locating sentence, include up to three sentences before it and three sentences after it from the same paragraph. If there are not enough sentences before/after, or if the three-sentence window would cross paragraph boundaries, show that paragraph in full instead. Bold the exact sentence or phrase that matters, and put the label in Chinese parentheses immediately after the bold part.
 
 Example:
 
@@ -91,7 +91,7 @@ Example:
 > ... **however**（转折：提示前后意义变化） ...
 > ... **background sentence**（辅助句：帮助理解题干背景） ...
 
-For detail questions, usually quote one paragraph excerpt. For inference, attitude, main-idea, title, or structure questions, quote the minimum set of excerpts needed to support the answer. The displayed excerpt should be easy to scan: the student should be able to see the decisive evidence without comparing the explanation to the original passage again.
+For detail questions, usually quote the full evidence paragraph or the three-sentence-before/after window around the locating sentence. For inference, attitude, main-idea, title, or structure questions, quote the minimum set of evidence paragraphs needed to support the answer, while still applying the same context-window rule to each locating sentence. The displayed excerpt should be easy to scan: the student should be able to see the decisive evidence and its local context without comparing the explanation to the original passage again.
 
 ### 中文参考翻译
 

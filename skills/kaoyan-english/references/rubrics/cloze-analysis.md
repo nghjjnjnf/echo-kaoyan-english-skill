@@ -11,7 +11,7 @@ When explaining a cloze blank, use a context-first, option-comparison style. Do 
 Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, question text, options, translations, and explanations. Do not use fenced code blocks for cloze context, option lists, or answer prose, because they force horizontal scrolling in Codex.
 
 1. Start with blank trap classification. Identify exam track, year, section, blank number, official answer, test point, and the core trap pattern.
-2. Paste the smallest useful context, but always display the full sentence containing the blank without ellipses. Add the previous or next sentence only when needed for logic, reference, contrast, or cohesion; if included, display those sentences fully by default.
+2. Paste the context window around the blank, not only the blank-containing sentence. Always display the full sentence containing the blank without ellipses, and include up to three sentences before and three sentences after it from the same paragraph. If the paragraph has fewer surrounding sentences or the window would cross paragraph boundaries, show the whole paragraph instead.
 3. Mark the blank directly inside the excerpt as `**___ 5 ___**（空格：...）`. Bold the word or phrase that controls the answer and add labels such as `（搭配：...）`, `（语法：...）`, `（逻辑：...）`, `（指代：...）`, or `（复现：...）`.
 4. Add a Chinese reference translation immediately after the excerpt. Preserve the same labels so lower-level students can understand what controls the blank.
 5. Display the blank number and all A-D options after the context and translation. In the `完整题目` section, arrange the four English options horizontally on one line, then arrange the four corresponding Chinese translations horizontally on the next line.
@@ -80,9 +80,9 @@ If the user claims a different answer from the indexed answer, state the indexed
 
 ### 相关原文截取
 
-Paste only the local context needed to solve the blank. The sentence containing the blank must be displayed in full and must not use `...` or ellipses, because its grammar and collocation are the evidence. Do not paste the whole passage unless the blank truly depends on the whole passage topic.
+Paste the local context needed to solve the blank. The sentence containing the blank must be displayed in full and must not use `...` or ellipses, because its grammar and collocation are the evidence. Do not show only the blank-containing sentence. Include up to three sentences before it and three sentences after it from the same paragraph. If there are not enough sentences before/after, or if the three-sentence window would cross paragraph boundaries, show that paragraph in full instead. Do not paste the whole passage unless the blank truly depends on the whole passage topic.
 
-If the previous or next sentence is needed, display that sentence fully by default. Only omit a long unrelated inserted phrase when it is truly irrelevant to the blank, and state the omission clearly; do not omit words from the blank-containing clause itself.
+Display all included surrounding sentences fully by default. Only omit a long unrelated inserted phrase when it is truly irrelevant to the blank, and state the omission clearly; do not omit words from the blank-containing clause itself.
 
 Use this format:
 
