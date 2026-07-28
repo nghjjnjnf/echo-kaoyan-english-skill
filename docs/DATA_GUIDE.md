@@ -1,8 +1,17 @@
 # 真题数据指南
 
-本项目将真题作为用户本地数据处理，不在公开仓库中分发真题原文或原始 Word 文件。
+本项目随仓库发布维护者声明有权公开的基础真题知识库，同时保留用户本地导入流程。
 
-## 支持的输入
+公开基础知识库只包含题面文本、题号映射和客观题答案；不包含解析、翻译参考答案、作文范文或原始 Word 文件。
+
+## 已随仓库发布的数据
+
+- 英语一：2010-2026 年。
+- 英语二：2010-2026 年。
+- 目录：`skills/kaoyan-english/references/papers/`。
+- 索引：`skills/kaoyan-english/references/corpus-index.json`。
+
+## 支持的导入输入
 
 当前导入器面向包含以下内容的 `.docx` 文件：
 
@@ -35,7 +44,7 @@ python skills/kaoyan-english/scripts/import_docx_papers.py \
   --exam english-ii
 ```
 
-可以连续导入多个文件。相同年份会按后一次导入结果更新，因此重复导入前应确认来源文件是否完整。
+可以连续导入多个文件。相同年份会按后一次导入结果更新，因此重复导入前应确认来源文件是否完整。若准备提交到公开仓库，应先确认相应内容具备公开再分发权限。
 
 ## 检查索引
 
@@ -90,7 +99,6 @@ references/papers/<exam>/<year>/
 
 ## 数据安全
 
-- 真题内容默认被 `.gitignore` 排除。
 - 原始 Word 默认被 `.gitignore` 排除。
-- 提交前运行 `python scripts/validate_repo.py`，检查是否误加入数据文件。
+- 提交前运行 `python scripts/validate_repo.py`，检查是否误加入原始 Word、翻译参考答案或作文答案。
 - 若需要团队共享，请使用有权限控制的私有仓库或受控文件系统。

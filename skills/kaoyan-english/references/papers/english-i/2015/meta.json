@@ -1,0 +1,15 @@
+{
+  "exam": "english-i",
+  "year": 2015,
+  "sections": [
+    "cloze",
+    "reading-text-1",
+    "reading-text-2",
+    "reading-text-3",
+    "reading-text-4",
+    "new-question-type",
+    "translation",
+    "writing"
+  ],
+  "content_scope": "authorized exam text; raw source document path removed"
+}

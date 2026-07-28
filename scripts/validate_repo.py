@@ -61,15 +61,34 @@ def validate_json_files():
 
 def validate_public_data_boundary():
     forbidden = []
+    invalid_answers = []
+    invalid_meta = []
+    invalid_paper_files = []
     for path in ROOT.rglob("*"):
         if not path.is_file():
             continue
         relative = path.relative_to(ROOT).as_posix()
         if relative.startswith("skills/kaoyan-english/assets/raw-papers/") and path.name != ".gitkeep":
             forbidden.append(relative)
-        if relative.startswith("skills/kaoyan-english/references/papers/") and path.name != ".gitkeep":
-            forbidden.append(relative)
+        if relative.startswith("skills/kaoyan-english/references/papers/"):
+            if path.name == ".gitkeep":
+                continue
+            if path.suffix not in {".md", ".json"}:
+                invalid_paper_files.append(relative)
+            if path.name == "answers.json":
+                data = json.loads(path.read_text(encoding="utf-8"))
+                answers = data.get("answers", {})
+                for removed_section in ("translation", "writing"):
+                    if removed_section in answers:
+                        invalid_answers.append(f"{relative} contains {removed_section}")
+            if path.name == "meta.json":
+                data = json.loads(path.read_text(encoding="utf-8"))
+                if "source_docx" in data:
+                    invalid_meta.append(relative)
     require(not forbidden, "公开仓库包含应排除的数据文件: " + ", ".join(forbidden))
+    require(not invalid_paper_files, "真题知识库包含不允许的文件类型: " + ", ".join(invalid_paper_files))
+    require(not invalid_answers, "answers.json 不应包含翻译或作文答案: " + ", ".join(invalid_answers))
+    require(not invalid_meta, "meta.json 不应包含本机原始 Word 路径: " + ", ".join(invalid_meta))
 
 
 def main():

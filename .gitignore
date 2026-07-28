@@ -8,11 +8,9 @@ venv/
 .DS_Store
 Thumbs.db
 
-# User-provided and generated corpus data
+# Raw source documents
 skills/kaoyan-english/assets/raw-papers/**
 !skills/kaoyan-english/assets/raw-papers/.gitkeep
-skills/kaoyan-english/references/papers/**
-!skills/kaoyan-english/references/papers/.gitkeep
 
-# Local corpus index is generated during import
+# Local-only corpus overlays generated during import
 skills/kaoyan-english/references/corpus-index.local.json
