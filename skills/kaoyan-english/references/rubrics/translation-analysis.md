@@ -33,7 +33,7 @@ Use this mode when the user submits a translation. Before scoring, identify the 
 
 ### Required Behavior
 
-1. Locate the original translation material from `references/papers/<exam>/<year>/translation.md` and the indexed reference answer from `answers.json` when available.
+1. Locate the original translation material from `references/papers/<exam>/<year>/translation.md`. Use the indexed reference answer from `answers.json` when available; otherwise use the `Echo 参考译文、难点评析与错误点总结` block appended to `translation.md` and label it as non-official.
 2. Display the original English sentence or passage, the user's translation, and the reference translation before scoring.
 3. Split scoring into meaning units. For English I, the meaning units for one segment must total 2 points. For English II, the meaning units for the whole passage must total 15 points.
 4. Evaluate accuracy first, then fluency. Do not reward a fluent sentence that changes the original meaning.

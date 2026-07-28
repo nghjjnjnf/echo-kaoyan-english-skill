@@ -2,6 +2,8 @@
 
 Use this for Section I Use of English. Cloze explanations must use a different scheme from reading explanations. Do not force cloze questions into the reading format of paragraph evidence and reading option traps. Cloze is about the blank position, local grammar, collocation, semantic fit, and discourse logic.
 
+If `cloze.md` contains an `Echo 完形整体难点评析与易错点总结` block, use that block as whole-passage background for topic, answer chain, and common error patterns. Do not replace blank-level analysis with the block; still locate and analyze the requested blank directly from the original cloze text.
+
 ## Required Behavior
 
 When explaining a cloze blank, use a context-first, option-comparison style. Do not give short comments such as "A 搭配正确". Each explanation should show why the blank needs a specific word or phrase and why nearby alternatives fail.

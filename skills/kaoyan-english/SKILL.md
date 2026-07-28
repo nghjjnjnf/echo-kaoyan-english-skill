@@ -22,6 +22,7 @@ Use the corpus files as the source of truth:
 - `references/papers/<exam>/<year>/question-map.json`: question number to section/file mapping.
 - `references/papers/<exam>/<year>/answers.json`: official/reference answers.
 - `references/papers/<exam>/<year>/*.md`: section text split by task type.
+- `translation.md` and `cloze.md` may include an `Echo` enrichment block at the bottom with non-official reference translations, whole-passage difficulty notes, and error summaries.
 
 When the user asks a vague question such as "2015 第二题为什么选 B", resolve it as follows:
 
@@ -48,7 +49,7 @@ Always include:
 
 Use paragraph-rich explanations for reading questions. Avoid overly short, scattered comments. For multiple reading questions in one request, answer up to five questions in the same response while preserving the full single-question depth for each question. Split into batches only when the user asks for more than five reading questions.
 
-For cloze questions, follow `references/rubrics/cloze-analysis.md`. Keep cloze explanations separate from reading explanations: cloze should focus on the blank position, local grammar, collocation, semantic fit, and discourse logic.
+For cloze questions, follow `references/rubrics/cloze-analysis.md`. Keep cloze explanations separate from reading explanations: cloze should focus on the blank position, local grammar, collocation, semantic fit, and discourse logic. When `cloze.md` contains an `Echo 完形整体难点评析与易错点总结` block, use it as background for final review, but still explain the requested blank(s) from the original sentence and options.
 
 Always include:
 
@@ -62,7 +63,7 @@ Always include:
 - detailed correct-option explanation after the distractor analysis
 - final memory cue or method takeaway
 
-For translation tasks, follow `references/rubrics/translation-analysis.md`. If the user provides their own translation, use translation grading mode; otherwise use translation explanation mode. Always identify whether the task is English I or English II before scoring, because English I uses five underlined segments for 10 points while English II uses one passage for 15 points.
+For translation tasks, follow `references/rubrics/translation-analysis.md`. If the user provides their own translation, use translation grading mode; otherwise use translation explanation mode. Always identify whether the task is English I or English II before scoring, because English I uses five underlined segments for 10 points while English II uses one passage for 15 points. When `answers.json` does not include translation answers, read the `Echo 参考译文、难点评析与错误点总结` block in `translation.md` and clearly label it as a non-official Echo reference translation.
 
 Always include:
 
