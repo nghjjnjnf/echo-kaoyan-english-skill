@@ -21,8 +21,8 @@ Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, qu
 5. Display the complete question stem and all A-D options after the evidence excerpt and translation. Put a concise Chinese translation immediately after the English stem and after each English option. Do not abbreviate the stem with ellipses.
 6. If a full paragraph is too long, excerpt the continuous part that contains the evidence plus enough before/after context. Do not force the student to compare against an unmarked paragraph.
 7. Explain the question focus in Chinese before explaining options.
-8. Explain the wrong options before explaining the correct option. For every wrong option, show its complete option text first, then what it says, why it fails, and the trap type.
-9. Explain why the correct option is right through exact passage evidence and synonym replacement after the wrong-option analysis.
+8. Explain the wrong options before explaining the correct option. Use elimination reasoning as the main option-analysis method: for every wrong option, show its complete option text first, explain why it may look tempting, compare it against the question focus and passage evidence, explain the exact mismatch, and name the trap type.
+9. Explain why the correct option is right through exact passage evidence and synonym replacement after the wrong-option analysis. Present the correct option as the conclusion after the distractors have been eliminated, not as an isolated assertion.
 10. End with a practical review note for future questions.
 
 ## Output Format
@@ -56,6 +56,7 @@ The answer should read like a teacher walking the student through the evidence c
 - In `相关原文截取`, quote the decisive excerpt and mark it directly in the English: `**...**（定位句：...）`, `**...**（辅助句：...）`, `**...**（转折：...）`, or `**...**（因果：...）`. The label should explain why the sentence matters, not merely name it.
 - In `题干在问什么`, explicitly separate what the question asks from what it does not ask. Use wording like: "它不是问……，而是问……". This prevents students from being pulled toward related but irrelevant passage details.
 - For each wrong option, first show the complete option, then write one developed paragraph explaining the option's surface meaning, the exact mismatch with the passage, and the trap type. Do not write one-line comments.
+- Use elimination reasoning throughout option analysis. A good wrong-option paragraph should answer: why this option looks plausible, which word/detail borrowed from the passage makes it tempting, what the question actually asks, where the option mismatches the evidence, and what trap type it represents.
 - In `为什么选 [Answer]`, explain the correct option through exact synonym replacement and logical matching. Use compact mappings when helpful, such as `play the roles` 对应 `act him out`, then follow with a paragraph explaining why the match is complete.
 - In `本题复盘`, give a transferable method: how to locate evidence, what phrase or relation was decisive, and what trap pattern to watch for next time.
 
@@ -136,6 +137,8 @@ Explain the wrong options before the correct-option analysis. Do not write `已�
 
 - the complete option text
 - the option's surface meaning
+- why it looks tempting or which passage word/detail it borrows
+- what the question is really asking and why the option does not answer it
 - why it fails against the passage evidence
 - trap type
 
@@ -145,7 +148,7 @@ A. [A] Full option text.
 分析：...  
 陷阱类型：...
 
-Each wrong-option explanation should be a complete paragraph, not a one-line dismissal. Never analyze an option without first showing its full original wording.
+Each wrong-option explanation should be a complete paragraph, not a one-line dismissal. Never analyze an option without first showing its full original wording. Do not merely say "原文没说" or "与原文不符"; state the precise mismatch, such as wrong subject, wrong action, wrong scope, wrong cause-effect relation, unsupported attitude, or related-but-irrelevant detail.
 
 ### 为什么选 [Answer]
 
@@ -155,6 +158,7 @@ Start by displaying the complete correct option text, then explain in one or mor
 - the exact evidence from the bold `（定位句）` or `（辅助句）`
 - the synonym replacement or logical match between the option and the passage
 - why the answer is complete and not merely partially related
+- why the remaining distractors have been eliminated, so the correct option is the only fully supported answer
 
 Use this mini-format when helpful:
 

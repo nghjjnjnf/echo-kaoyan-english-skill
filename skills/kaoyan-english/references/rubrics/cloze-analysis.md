@@ -16,8 +16,8 @@ Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, qu
 4. Add a Chinese reference translation immediately after the excerpt. Preserve the same labels so lower-level students can understand what controls the blank.
 5. Display the blank number and all A-D options after the context and translation. In the `完整题目` section, arrange the four English options horizontally on one line, then arrange the four corresponding Chinese translations horizontally on the next line.
 6. Explain what the blank needs before analyzing options: part of speech, sentence role, controlled collocation, semantic direction, and discourse relation.
-7. Explain the wrong options before explaining the correct option. For every wrong option, show its complete option text first, then what it means, why it fails, and the trap type.
-8. Explain why the correct option fits through exact local context, collocation, grammar, and discourse logic after the wrong-option analysis.
+7. Explain the wrong options before explaining the correct option. Use elimination reasoning as the main option-analysis method: for every wrong option, show its complete option text first, explain why it may look possible, compare it against the blank's part of speech, collocation, semantic direction, and discourse logic, then name the trap type.
+8. Explain why the correct option fits through exact local context, collocation, grammar, and discourse logic after the wrong-option analysis. Present it as the only option left after the grammar, collocation, and logic filters have eliminated the distractors.
 9. End with a reusable memory cue or method takeaway.
 
 ## Output Format
@@ -52,7 +52,7 @@ The answer should read like a teacher showing how the blank is controlled by loc
 - In `中文参考翻译`, translate the quoted context naturally and preserve the same labels. The translation should help weaker students see the trend, contrast, cause, reference, or collocation without re-parsing the English.
 - In `完整题目`, keep the cloze-specific horizontal option layout. Put the four English options on one line and the four Chinese translations on the next line, so the student can compare options quickly.
 - In `空格处需要什么`, explain the needed part of speech, sentence role, subject or object, nearby controlling words, and the required semantic direction. This section should make the answer feel inevitable before option comparison begins.
-- In `其他选项为什么错`, analyze wrong options before the correct option. For each wrong option, show the complete option, give the Chinese meaning, explain the mismatch with grammar/collocation/logic, and label the trap type.
+- In `其他选项为什么错`, analyze wrong options before the correct option. Use elimination reasoning: for each wrong option, show the complete option, give the Chinese meaning, explain why it may look possible, identify the grammar/collocation/logic filter it fails, and label the trap type.
 - In `为什么选 [Answer]`, show the correct option and explain how it completes the sentence. Emphasize local evidence chains such as `peaks -> levels out -> decline`, `cause -> result`, `contrast -> correction`, or `pronoun -> referent`.
 - In `本空复盘`, give a short reusable method, such as "不要孤立看一个空，要把并列动词串起来看" or "先判断逻辑方向，再比较近义词".
 
@@ -128,6 +128,8 @@ Explain the wrong options before the correct-option analysis. Do not write `已�
 
 - the complete option text
 - the option's basic meaning
+- why it may look possible when viewed only from Chinese meaning or isolated vocabulary
+- which filter eliminates it: part of speech, sentence role, collocation, semantic direction, discourse logic, or reference relation
 - why it fails against the blank's grammar, collocation, or logic
 - trap type
 
@@ -138,7 +140,7 @@ A. [A] Full option text.
 分析：...  
 陷阱类型：...
 
-Each wrong-option explanation should be a complete paragraph, not a one-line dismissal.
+Each wrong-option explanation should be a complete paragraph, not a one-line dismissal. Do not merely say "不符合语境"; state the exact reason, such as wrong semantic direction, impossible collocation, repeated meaning, broken progression, wrong referent, or mismatch with the required sentence role.
 
 ### 为什么选 [Answer]
 
@@ -148,6 +150,7 @@ Start by displaying the complete correct option text, then explain in one or mor
 - how it forms a natural collocation with nearby words
 - how it matches the local sentence meaning
 - how it matches the broader discourse logic when relevant
+- why the grammar, collocation, and logic filters eliminate the other options and leave this one as the best answer
 
 Use this mini-format when helpful:
 
