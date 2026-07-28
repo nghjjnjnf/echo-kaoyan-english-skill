@@ -1,7 +1,7 @@
 {
   "name": "kaoyan-english",
   "version": "0.1.0",
-  "description": "Echo_考研英语SKILL：面向考研英语一与英语二的真题精析、翻译与作文批改、模拟训练插件。",
+  "description": "Echo_考研英语SKILL：面向考研英语一与英语二的真题精析、全文翻译、翻译与作文批改、模拟训练插件。",
   "author": {
     "name": "nghjjnjnf",
     "email": "junyaozz@sjtu.edu.cn",
@@ -9,7 +9,7 @@
   },
   "homepage": "https://github.com/nghjjnjnf/echo-kaoyan-english-skill",
   "repository": "https://github.com/nghjjnjnf/echo-kaoyan-english-skill",
-  "license": "MIT",
+  "license": "Unlicense",
   "keywords": [
     "codex",
     "agent-skill",
@@ -19,6 +19,9 @@
     "英一",
     "英二",
     "阅读",
+    "全文翻译",
+    "重点词汇",
+    "固定搭配",
     "完形",
     "完型",
     "翻译",
@@ -34,8 +37,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Echo_考研英语SKILL",
-    "shortDescription": "真题逐题精析、翻译作文批改与模拟训练",
-    "longDescription": "Echo_考研英语SKILL 针对考研英语一和英语二，提供阅读与完形逐题证据链解析、翻译评分、作文分档批改、可控词汇难度的模拟训练、练习保存和错题复盘。",
+    "shortDescription": "真题证据链解析、全文翻译与模拟训练",
+    "longDescription": "Echo_考研英语SKILL 针对考研英语一和英语二，提供阅读与完形逐题证据链解析、阅读/完形全文翻译、重点词汇与固定搭配讲解、翻译评分、作文分档批改、可控词汇难度的模拟训练、练习保存和错题复盘。",
     "developerName": "nghjjnjnf",
     "category": "Education",
     "capabilities": [],

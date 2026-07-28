@@ -196,6 +196,21 @@ class SimulationScriptsTest(unittest.TestCase):
                 encoding="utf-8",
             )
 
+    def test_validates_passage_translation_contract(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            response = Path(temp_dir) / "passage_translation.md"
+            response.write_text(
+                "\n".join(["文章定位", "全文分段翻译", "重点词汇", "固定搭配与表达", "长难句与结构", "学习复盘"]),
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [sys.executable, str(CONTRACT_SCRIPT), str(response), "--type", "passage-translation"],
+                check=True,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

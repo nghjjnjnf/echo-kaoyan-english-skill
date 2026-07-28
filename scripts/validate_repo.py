@@ -24,7 +24,7 @@ def validate_manifest():
     require(data.get("name") == "kaoyan-english", "plugin name must be kaoyan-english")
     require(bool(re.fullmatch(r"\d+\.\d+\.\d+", data.get("version", ""))), "version must use semantic versioning")
     require(data.get("skills") == "./skills/", "skills path must be ./skills/")
-    require(data.get("license") == "MIT", "manifest license must be MIT")
+    require(data.get("license") == "Unlicense", "manifest license must be Unlicense")
     interface = data.get("interface", {})
     for field in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
         require(bool(interface.get(field)), f"manifest interface missing {field}")
@@ -44,6 +44,7 @@ def validate_skill():
         "references/rubrics/reading-analysis.md",
         "references/rubrics/cloze-analysis.md",
         "references/rubrics/translation-analysis.md",
+        "references/rubrics/passage-translation.md",
         "references/rubrics/writing-rubric.md",
         "scripts/import_docx_papers.py",
         "scripts/search_papers.py",
@@ -137,6 +138,9 @@ def validate_agent_compatibility():
         "完形",
         "完型",
         "翻译",
+        "全文翻译",
+        "重点词汇",
+        "固定搭配",
         "作文批改",
         "模拟阅读",
         "模拟完形",

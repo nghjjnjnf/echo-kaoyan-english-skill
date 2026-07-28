@@ -6,15 +6,15 @@
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/actions/workflows/validate.yml"><img alt="校验状态" src="https://img.shields.io/github/actions/workflow/status/nghjjnjnf/echo-kaoyan-english-skill/validate.yml?branch=main&style=flat-square&label=%E6%A0%A1%E9%AA%8C"></a>
   <img alt="版本" src="https://img.shields.io/badge/version-0.1.0-13795B?style=flat-square">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
-  <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-E85D3F?style=flat-square"></a>
+  <a href="./LICENSE"><img alt="Unlicense" src="https://img.shields.io/badge/license-Unlicense-E85D3F?style=flat-square"></a>
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill--only%20Plugin-111827?style=flat-square">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code%20%7C%20Cursor%20%7C%20Trae-6B7280?style=flat-square">
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/issues"><img alt="Issues" src="https://img.shields.io/github/issues/nghjjnjnf/echo-kaoyan-english-skill?style=flat-square"></a>
 </p>
 
 <p align="center">
-  <strong>Echo_考研英语SKILL</strong> 是一个面向 Codex 的考研英语学习 skill-only plugin。<br>
-  它把真题检索、证据链讲解、翻译评分、作文批改和外刊模拟训练整理成可复用的备考工作流。
+  <strong>Echo_考研英语SKILL</strong> 是一个面向 Codex、Claude Code、Cursor 和 Trae 的考研英语学习 skill。<br>
+  它把真题知识库、证据链解析、全文翻译、翻译评分、作文批改和模拟训练整理成可复用的备考工作流。
 </p>
 
 <p align="center">
@@ -30,6 +30,8 @@
 
 很多考研英语讲解只停留在“答案是什么”。这个 skill 更关注“答案为什么成立”：它会把题干、选项、原文定位句、辅助句、中文翻译、错因陷阱和复盘方法放在同一个回答结构里，让使用者不需要在真题、答案和解析之间来回切换。
 
+它不是简单的资料合集，而是一套面向 AI Agent 的考研英语备考规则层：同一份知识库可以在多个客户端中复用，同一套输出契约可以约束阅读、完形、翻译、作文和模拟题的回答质量。
+
 项目采用“公开基础知识库 + 本地扩展导入”的设计：
 
 - 公开仓库包含维护者声明有权发布的基础真题知识库。
@@ -38,12 +40,29 @@
 - 用户仍可通过导入脚本在本地扩展自己的资料。
 - 阅读、完形、翻译、作文和模拟题分别使用独立规则，避免所有题型套同一个模板。
 
+## 核心亮点
+
+- **真题可检索**：按英语一/英语二、年份、题型和题号组织材料，支持快速定位阅读 Text、完形、翻译和作文题。
+- **解析有证据链**：阅读题会先给陷阱分类，再截取必要原文，标记定位句和辅助句，逐项拆解正确选项与干扰项。
+- **完形更像真题训练**：按空格功能、固定搭配、语义递进、逻辑衔接和词义辨析拆解，不把完形讲成孤立词汇题。
+- **全文翻译可学习**：支持阅读和完形全文翻译，按段落给中文译文，并整理重点词汇、固定搭配和长难句。
+- **评分区分英一英二**：翻译和作文按题型实际分值、字数建议和评分档位处理，避免混用标准。
+- **模拟题可闭环**：先生成题目并隐藏答案，用户作答后再按真题风格讲解；需要时可把练习、答案和解析保存到本地记录。
+- **多客户端可用**：仓库内置 Codex、Claude Code、Cursor 和 Trae 入口，让同一套规则可以在不同 Agent 环境中调用。
+
+## 适合谁
+
+- 正在系统刷考研英语真题，希望每道题都能追到原文证据的自学者。
+- 想把阅读、完形、翻译和作文讲解流程标准化的老师、助教或学习小组。
+- 希望在 Codex、Claude Code、Cursor 或 Trae 中搭建个人备考知识库和错题复盘流程的用户。
+
 ## 功能地图
 
 | 场景 | 你可以问什么 | skill 会怎么回答 |
 | --- | --- | --- |
 | 阅读理解 | `讲解 2025 年英一阅读 Text 1 第 21 题为什么选 A` | 截取必要原文，标记定位句/辅助句，逐项说明正确选项和干扰项陷阱 |
 | 完形填空 | `讲解 2021 年英一完形第 8 空` | 展示完整含空句，不使用省略号，横向列出 A-D 选项并分析搭配、语义和篇章逻辑 |
+| 全文翻译 | `把 2024 年英一阅读 Text 2 全文翻译，并讲重点词汇和固定搭配` | 按段落展示原文和中文译文，整理重点词汇、固定搭配、长难句和学习复盘 |
 | 翻译评分 | `这是我的 2025 年英一第 46 句翻译，请按 2 分制评分` | 区分英一 10 分制和英二 15 分制，按意群扣分，并给出基于用户版本的修改稿 |
 | 作文批改 | `按 2024 年英二大作文标准批改这篇作文` | 分档评分、逐句修改、给出改后版本、结构建议和可复用表达 |
 | 范文生成 | `给我一篇扎实版和高级版范文` | 根据英一/英二、小作文/大作文分值和题型要求生成两档范文 |
@@ -106,6 +125,23 @@ python3 -m pip install -r echo-kaoyan-english-skill/requirements.txt
 - 包含：题面文本、题号映射、客观题答案、Echo 生成的翻译参考译文、翻译/完形整体难点评析与易错点总结。
 - 不包含：逐题官方解析、作文范文、原始 Word 文件。
 
+如果你要补充自己的资料，请使用自己合法取得的 DOCX 文件进行本地导入。导入结果可作为本地扩展使用，提交到公开仓库前应确认再分发权限。
+
+导入英语一：
+
+```powershell
+python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
+  "D:\papers\english_i_part1.docx" `
+  --exam english-i
+```
+
+导入英语二：
+
+```powershell
+python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
+  "D:\papers\english_ii_part1.docx" `
+  --exam english-ii
+```
 
 知识库结构如下：
 
@@ -148,6 +184,11 @@ references/
 请按 2 分制逐意群评分，说明每处扣分，并在我的版本上修改。
 ```
 
+全文翻译：
+```text
+把 2024 年英一阅读 Text 2 全文翻译成中文，并整理重点词汇、固定搭配和长难句。
+```
+
 作文批改：
 
 ```text
@@ -178,6 +219,7 @@ references/
 完形、翻译和作文使用独立规则：
 
 - 完形重点分析空格位置、语法结构、固定搭配、语义匹配和篇章衔接。
+- 全文翻译会区分阅读和完形，按段落展示译文，并补充重点词汇、固定搭配和长难句。
 - 翻译会先识别英一或英二，再按对应总分和题型形式评分。
 - 作文会区分英一/英二、小作文/大作文，并提供评分、修改、范文和知识点提炼。
 - 多题解析一次最多完整处理 5 道题，优先保证每一道题的讲解深度。
@@ -239,6 +281,13 @@ python scripts/validate_repo.py
 python -m unittest discover -s tests -v
 ```
 
+校验覆盖：
+
+- 插件清单、skill frontmatter、必需脚本和多 Agent 入口文件。
+- 公开数据边界，避免把原始 Word、作文范文或不应公开的资料混入仓库。
+- 模拟题词数、答案隐藏、难度配比、练习记录和响应契约。
+- 阅读/完形/作文/全文翻译等核心输出结构的回归检查。
+
 ## 路线图
 
 - [x] 阅读与完形分题型深度解析
@@ -248,6 +297,7 @@ python -m unittest discover -s tests -v
 - [x] 用户词汇表覆盖率报告
 - [x] 模拟题结构化保存、词数校验与答案隐藏检查
 - [x] 阅读/完形/作文输出契约回归检查
+- [x] 阅读和完形全文翻译、重点词汇、固定搭配与长难句讲解
 - [ ] 更稳健的多来源文档解析
 - [ ] 可复现的提示词评测集
 - [ ] 更多新题型专项规则

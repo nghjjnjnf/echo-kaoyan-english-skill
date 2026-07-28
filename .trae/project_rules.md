@@ -1,6 +1,6 @@
 # Echo_考研英语SKILL Trae Project Rules
 
-Use this repository as an agent-ready 考研英语 skill project for 考研英语真题、英一、英二、阅读、完形/完型、翻译、作文批改、考研英语模拟题、模拟阅读、模拟完形/完型、外刊出题、外刊改编、VOA 阅读、抓取文章、生成练习、保存练习记录 and 错题复盘.
+Use this repository as an agent-ready 考研英语 skill project for 考研英语真题、英一、英二、阅读、阅读全文翻译、阅读原文翻译、完形全文翻译、完型全文翻译、重点词汇、固定搭配、完形/完型、翻译、作文批改、考研英语模拟题、模拟阅读、模拟完形/完型、外刊出题、外刊改编、VOA 阅读、抓取文章、生成练习、保存练习记录 and 错题复盘.
 
 Primary rules live in `skills/kaoyan-english/SKILL.md`.
 

@@ -1,6 +1,6 @@
 ---
 name: kaoyan-english
-description: 考研英语一和英语二备考 skill，支持历年真题知识库检索、阅读/完形/完型/翻译逐题精析、作文按考研标准评分批改、基于本地原创或外刊来源的模拟阅读和完形/完型出题、生成练习保存与错题复盘，并可结合考研词汇表控制难度。Use when users ask about 考研英语真题、英一、英语一、英二、英语二、阅读、阅读理解、阅读 Text、Text 1/Text 2/Text 3/Text 4、完形填空、完型填空、完形、完型、翻译、作文、作文批改、大小作文、考研英语模拟题、模拟阅读、模拟完形、模拟完型、外刊阅读训练、外刊出题、外刊改编、VOA 阅读、抓取文章、生成练习、保存练习记录、题目选项讲解、答案依据、长难句分析、错题复盘。Only use for explicit 考研英语/英一/英二/备考 contexts; do not use for unrelated generic reading, translation, writing, or coding tasks.
+description: 考研英语一和英语二备考 skill，支持历年真题知识库检索、阅读/完形/完型/翻译逐题精析、阅读和完形全文翻译、重点词汇与固定搭配讲解、作文按考研标准评分批改、基于本地原创或外刊来源的模拟阅读和完形/完型出题、生成练习保存与错题复盘，并可结合考研词汇表控制难度。Use when users ask about 考研英语真题、英一、英语一、英二、英语二、阅读、阅读理解、阅读 Text、Text 1/Text 2/Text 3/Text 4、阅读全文翻译、阅读原文翻译、完形全文翻译、完型全文翻译、重点词汇、固定搭配、完形填空、完型填空、完形、完型、翻译、作文、作文批改、大小作文、考研英语模拟题、模拟阅读、模拟完形、模拟完型、外刊阅读训练、外刊出题、外刊改编、VOA 阅读、抓取文章、生成练习、保存练习记录、题目选项讲解、答案依据、长难句分析、错题复盘。Only use for explicit 考研英语/英一/英二/备考 contexts; do not use for unrelated generic reading, translation, writing, or coding tasks.
 ---
 
 # Echo_考研英语SKILL
@@ -8,7 +8,7 @@ description: 考研英语一和英语二备考 skill，支持历年真题知识�
 ## Core Workflow
 
 1. Identify the exam track: English I (`english-i`) or English II (`english-ii`). If the user does not specify, infer from the requested year/resource path when possible; otherwise ask only when the distinction changes the answer.
-2. Identify the task type: past-paper lookup, cloze explanation, reading explanation, translation explanation, essay grading, or simulation generation.
+2. Identify the task type: past-paper lookup, cloze explanation, reading explanation, passage translation, translation-question explanation/grading, essay grading, or simulation generation.
 3. For past-paper tasks, read `references/corpus-index.json` first, then load only the requested year/section file from `references/papers/`.
 4. For answer-sensitive tasks, avoid loading `answers.json` until the user asks for an answer/explanation or submits their own answer.
 5. For generated practice, read `references/strategies/simulation-generation.md` and use `references/vocabulary/` if the user provides a vocabulary list.
@@ -89,6 +89,23 @@ When grading a user's translation, always include:
 - official-style deductions: for English I, major meaning mismatch caps that segment at 0.5; for English II, local mismatch loses the corresponding meaning-unit points and a whole-passage mismatch caps the total at 3/15; multiple submitted translations are graded as wrong if any one version is wrong; three or more Chinese typos deduct 0.5 by English I segment or from the English II passage total
 - corrected version based on the user's translation
 - targeted revision advice
+
+## Passage Translation
+
+For reading or cloze full-passage translation tasks, read `references/rubrics/passage-translation.md`. Use this mode when the user asks to translate a reading passage, translate a cloze/完形 passage, show a complete Chinese translation, or explain key vocabulary and fixed expressions in the passage.
+
+Do not confuse this with translation-question scoring. Passage translation is for comprehension support, not exam translation scoring.
+
+Always include:
+
+1. passage location
+2. full paragraph-by-paragraph translation
+3. key vocabulary in context
+4. fixed phrases and collocations
+5. long/difficult sentence notes
+6. learning review
+
+For cloze passages, keep blanks visible and do not reveal the answer key by default. If the user asks for a completed translation after requesting answers, then load `answers.json`, fill the blanks, and clearly label the output as answer-revealing.
 
 ## Essay Grading
 
