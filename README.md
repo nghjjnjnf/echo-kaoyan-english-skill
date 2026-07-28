@@ -106,23 +106,6 @@ python3 -m pip install -r echo-kaoyan-english-skill/requirements.txt
 - 包含：题面文本、题号映射、客观题答案、Echo 生成的翻译参考译文、翻译/完形整体难点评析与易错点总结。
 - 不包含：逐题官方解析、作文范文、原始 Word 文件。
 
-如果你要补充自己的资料，请使用自己合法取得的 DOCX 文件进行本地导入。导入结果可作为本地扩展使用，提交到公开仓库前应确认再分发权限。
-
-导入英语一：
-
-```powershell
-python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
-  "D:\papers\english_i_part1.docx" `
-  --exam english-i
-```
-
-导入英语二：
-
-```powershell
-python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
-  "D:\papers\english_ii_part1.docx" `
-  --exam english-ii
-```
 
 知识库结构如下：
 
