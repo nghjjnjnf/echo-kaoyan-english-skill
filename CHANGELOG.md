@@ -6,6 +6,7 @@
 
 ### Changed
 
+- README 快速开始补充最简单使用方式：把 GitHub 仓库地址直接交给 Codex 或 Claude Code。
 - README 导航栏和主要模块标题加入小图标，提升 GitHub 项目主页的可读性和视觉层次。
 - 清理项目级内容边界旧说明，统一改为仓库数据边界、隐私数据和临时源文件边界说明。
 - `.codex-plugin/plugin.json` 移除旧字段，`corpus-index.json` 移除 `content_scope` 字段，保持项目元数据更简洁。

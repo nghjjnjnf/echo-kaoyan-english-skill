@@ -71,6 +71,8 @@
 
 ## 🚀 快速开始
 
+最简单的方法：把这个 GitHub 仓库地址直接拖给 Codex 或 Claude Code，让 Agent 读取项目并按安装说明启用 skill。
+
 Codex 推荐用 Skill Installer：
 
 在 Codex 中输入：
