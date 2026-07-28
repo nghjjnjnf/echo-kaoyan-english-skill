@@ -8,29 +8,47 @@
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-E85D3F?style=flat-square"></a>
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill--only%20Plugin-111827?style=flat-square">
+  <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/issues"><img alt="Issues" src="https://img.shields.io/github/issues/nghjjnjnf/echo-kaoyan-english-skill?style=flat-square"></a>
 </p>
 
 <p align="center">
-  为考研英语一与英语二设计的 Codex 学习助手。<br>
-  把真题检索、证据链讲解、翻译评分、作文批改和模拟训练组织成稳定、可复用的工作流。
+  <strong>Echo_考研英语SKILL</strong> 是一个面向 Codex 的考研英语学习 skill-only plugin。<br>
+  它把真题检索、证据链讲解、翻译评分、作文批改和外刊模拟训练整理成可复用的备考工作流。
 </p>
 
-## 它能做什么
+<p align="center">
+  <a href="#快速开始">快速开始</a> ·
+  <a href="#准备真题知识库">准备真题知识库</a> ·
+  <a href="#典型用法">典型用法</a> ·
+  <a href="#输出标准">输出标准</a> ·
+  <a href="#贡献">贡献</a>
+</p>
 
-| 能力 | 结果特点 |
-| --- | --- |
-| 阅读理解精析 | 展示必要原文、标记定位句与辅助句、逐项解释陷阱，并给出同义替换链 |
-| 完形填空精析 | 围绕语法、搭配、语义与篇章逻辑分析，四个选项横向展示 |
-| 翻译评分与讲解 | 自动区分英一 10 分制与英二 15 分制，按意群给分并提供修改稿 |
-| 作文评分与批改 | 区分英一/英二及大小作文，分档评分、逐句修改，并提供扎实版与高级版范文 |
-| 外刊模拟训练 | 生成阅读或完形练习，并根据考研词表控制超纲词汇 |
-| 本地真题知识库 | 将合法取得的 DOCX 真题拆分为年份、题型、题号和答案索引 |
+## 为什么做这个项目
 
-这个项目关注的不是“只报答案”，而是让每一道题都能回到原文证据、题干约束和干扰项机制。
+很多考研英语讲解只停留在“答案是什么”。这个 skill 更关注“答案为什么成立”：它会把题干、选项、原文定位句、辅助句、中文翻译、错因陷阱和复盘方法放在同一个回答结构里，让使用者不需要在真题、答案和解析之间来回切换。
+
+项目采用公开仓库和本地知识库分离的设计：
+
+- 公开仓库只包含 skill、导入脚本、评分规则、文档和测试。
+- 真题正文、参考答案、原始 Word 和第三方资料由用户在本地导入，不随仓库分发。
+- 阅读、完形、翻译、作文和模拟题分别使用独立规则，避免所有题型套同一个模板。
+
+## 功能地图
+
+| 场景 | 你可以问什么 | skill 会怎么回答 |
+| --- | --- | --- |
+| 阅读理解 | `讲解 2025 年英一阅读 Text 1 第 21 题为什么选 A` | 截取必要原文，标记定位句/辅助句，逐项说明正确选项和干扰项陷阱 |
+| 完形填空 | `讲解 2021 年英一完形第 8 空` | 展示完整含空句，不使用省略号，横向列出 A-D 选项并分析搭配、语义和篇章逻辑 |
+| 翻译评分 | `这是我的 2025 年英一第 46 句翻译，请按 2 分制评分` | 区分英一 10 分制和英二 15 分制，按意群扣分，并给出基于用户版本的修改稿 |
+| 作文批改 | `按 2024 年英二大作文标准批改这篇作文` | 分档评分、逐句修改、给出改后版本、结构建议和可复用表达 |
+| 范文生成 | `给我一篇扎实版和高级版范文` | 根据英一/英二、小作文/大作文分值和题型要求生成两档范文 |
+| 模拟训练 | `生成一篇考研英语一难度外刊阅读题` | 控制文章难度，生成题目，隐藏答案，等用户作答后再批改 |
+| 本地检索 | `查 2023 年英一阅读 Text 3 的答案和题号映射` | 从本地 `corpus-index.json`、`question-map.json` 和题型文件定位材料 |
 
 ## 快速开始
 
-### 方式一：使用 Skill Installer
+### 使用 Skill Installer
 
 在 Codex 中输入：
 
@@ -40,13 +58,15 @@ $skill-installer install https://github.com/nghjjnjnf/echo-kaoyan-english-skill/
 
 安装完成后重启 Codex，使新 skill 被发现。
 
-### 方式二：手动安装
+### 手动安装
+
+Windows PowerShell：
 
 ```powershell
 git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills" | Out-Null
-Copy-Item -Recurse ".\kaoyan-english\skills\kaoyan-english" "$env:USERPROFILE\.codex\skills\kaoyan-english"
-python -m pip install -r ".\kaoyan-english\requirements.txt"
+Copy-Item -Recurse ".\echo-kaoyan-english-skill\skills\kaoyan-english" "$env:USERPROFILE\.codex\skills\kaoyan-english"
+python -m pip install -r ".\echo-kaoyan-english-skill\requirements.txt"
 ```
 
 macOS 或 Linux：
@@ -54,13 +74,15 @@ macOS 或 Linux：
 ```bash
 git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
 mkdir -p ~/.codex/skills
-cp -R kaoyan-english/skills/kaoyan-english ~/.codex/skills/kaoyan-english
-python3 -m pip install -r kaoyan-english/requirements.txt
+cp -R echo-kaoyan-english-skill/skills/kaoyan-english ~/.codex/skills/kaoyan-english
+python3 -m pip install -r echo-kaoyan-english-skill/requirements.txt
 ```
 
 ## 准备真题知识库
 
-仓库不分发真题原文。请使用自己合法取得的 DOCX 文件进行本地导入：
+仓库不提供真题原文。请使用自己合法取得的 DOCX 文件进行本地导入。
+
+导入英语一：
 
 ```powershell
 python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
@@ -68,7 +90,7 @@ python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
   --exam english-i
 ```
 
-英语二使用：
+导入英语二：
 
 ```powershell
 python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
@@ -76,51 +98,62 @@ python ".\skills\kaoyan-english\scripts\import_docx_papers.py" `
   --exam english-ii
 ```
 
-脚本会清理已知页眉和公众号信息，并生成：
+导入后会生成如下本地知识库结构：
 
 ```text
 references/
-├── corpus-index.json
-└── papers/
-    ├── english-i/
-    │   └── 2025/
-    │       ├── meta.json
-    │       ├── question-map.json
-    │       ├── answers.json
-    │       ├── reading-text-1.md
-    │       ├── cloze.md
-    │       ├── translation.md
-    │       └── writing.md
-    └── english-ii/
+|-- corpus-index.json
+`-- papers/
+    |-- english-i/
+    |   `-- 2025/
+    |       |-- meta.json
+    |       |-- question-map.json
+    |       |-- answers.json
+    |       |-- reading-text-1.md
+    |       |-- cloze.md
+    |       |-- translation.md
+    |       `-- writing.md
+    `-- english-ii/
 ```
 
 完整的数据格式、导入检查和常见问题见 [真题数据指南](./docs/DATA_GUIDE.md)。
 
-## 直接这样问
+## 典型用法
+
+阅读理解：
 
 ```text
-讲解 2025 年英一阅读第一篇第 21 题，说明为什么选 A。
+讲解 2023 年英一阅读 Text 3 的五道题，保持每一题与单题解析相同的深度。
 ```
 
-```text
-讲解 2021 年英一完形第 8 空，其他选项为什么不合适？
-```
+完形填空：
 
 ```text
-这是我的 2023 年英一第 47 句翻译，请按 2 分制评分并在我的版本上修改：……
+讲解 2021 年英一完形第 8 空。原句不要使用省略号，四个选项横向排列。
 ```
 
-```text
-请按 2024 年英二大作文标准给这篇作文评分，逐句批改，并给出扎实版范文。
-```
+翻译评分：
 
 ```text
-找一篇适合考研英语一的外刊主题，生成 5 道阅读题，超纲词替换为考研词汇。
+这是我对 2025 年英一第 46 句的翻译：……
+请按 2 分制逐意群评分，说明每处扣分，并在我的版本上修改。
+```
+
+作文批改：
+
+```text
+请按 2024 年英二大作文 15 分制批改下面的作文，给出逐句修改和可复用结构。
+```
+
+外刊模拟：
+
+```text
+围绕人工智能与就业生成一篇考研英语一难度的模拟阅读，出 5 道四选一题。先隐藏答案，等我提交后再批改。
 ```
 
 更多输入示例与输出结构见 [使用示例](./docs/EXAMPLES.md)。
 
-## 回答质量约束
+## 输出标准
 
 阅读题默认按以下顺序组织：
 
@@ -133,7 +166,12 @@ references/
 7. 正确选项证据链
 8. 本题复盘
 
-完形、翻译和作文分别使用独立评分与讲解规则，不套用同一份通用模板。一次可完整解析最多 5 道阅读题或 5 个完形空，优先保证每一题的分析深度。
+完形、翻译和作文使用独立规则：
+
+- 完形重点分析空格位置、语法结构、固定搭配、语义匹配和篇章衔接。
+- 翻译会先识别英一或英二，再按对应总分和题型形式评分。
+- 作文会区分英一/英二、小作文/大作文，并提供评分、修改、范文和知识点提炼。
+- 多题解析一次最多完整处理 5 道题，优先保证每一道题的讲解深度。
 
 ## 工作原理
 
@@ -141,35 +179,35 @@ references/
 flowchart LR
     A["用户问题"] --> B["识别英一/英二、年份与题型"]
     B --> C{"任务类型"}
-    C -->|真题讲解| D["检索 question-map 与题型文件"]
+    C -->|真题讲解| D["检索索引与题型文件"]
     C -->|翻译/作文| E["加载对应评分细则"]
     C -->|模拟训练| F["加载词汇边界与出题策略"]
-    D --> G["原文证据 + 选项陷阱"]
+    D --> G["原文证据 + 选项陷阱 + 复盘"]
     E --> H["分项评分 + 修改稿 + 提升建议"]
     F --> I["改写材料 + 生成题目 + 隐藏答案"]
 ```
 
-skill 采用渐进式加载：主文件只负责路由，阅读、完形、翻译、作文和模拟题规则分别存放在 `references/`，真题则按年份和题型读取，避免一次性塞入全部文本。
+skill 采用渐进式加载：`SKILL.md` 只负责路由和核心约束，阅读、完形、翻译、作文和模拟题规则分别放在 `references/` 中；真题材料按年份和题型拆分，避免一次性加载全部文本。
 
 ## 项目结构
 
 ```text
-kaoyan-english/
-├── .codex-plugin/plugin.json
-├── skills/kaoyan-english/
-│   ├── SKILL.md
-│   ├── agents/openai.yaml
-│   ├── scripts/
-│   │   ├── import_docx_papers.py
-│   │   └── search_papers.py
-│   └── references/
-│       ├── rubrics/
-│       ├── strategies/
-│       ├── vocabulary/
-│       └── papers/
-├── docs/
-├── tests/
-└── .github/
+echo-kaoyan-english-skill/
+|-- .codex-plugin/plugin.json
+|-- skills/kaoyan-english/
+|   |-- SKILL.md
+|   |-- agents/openai.yaml
+|   |-- scripts/
+|   |   |-- import_docx_papers.py
+|   |   `-- search_papers.py
+|   `-- references/
+|       |-- rubrics/
+|       |-- strategies/
+|       |-- vocabulary/
+|       `-- papers/
+|-- docs/
+|-- tests/
+`-- .github/
 ```
 
 ## 本地校验
@@ -191,9 +229,16 @@ python -m unittest discover -s tests -v
 - [ ] 可复现的提示词评测集
 - [ ] 更多新题型专项规则
 
-## 参与贡献
+## 贡献
 
-欢迎提交解析规则、导入器兼容性、测试用例和文档改进。提交前请阅读 [贡献指南](./CONTRIBUTING.md)。
+欢迎提交解析规则、导入器兼容性、测试用例和文档改进。提交前请阅读 [贡献指南](./CONTRIBUTING.md)，并确保本地校验通过。
+
+适合贡献的内容包括：
+
+- 新来源 DOCX 的导入兼容性修复
+- 阅读、完形、翻译、作文评分规则补充
+- 更好的示例 prompt 和输出样例
+- 测试用例、文档纠错和安装体验优化
 
 请不要在 Issue 或 Pull Request 中上传未经授权的真题全文、培训机构讲义或其他第三方受版权保护材料。
 
