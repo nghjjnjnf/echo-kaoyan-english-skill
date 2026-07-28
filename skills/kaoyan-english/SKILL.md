@@ -93,6 +93,7 @@ Always identify the exam track and writing task before scoring or generating:
 - English I large writing: 20 points.
 - English II small writing: 10 points.
 - English II large writing: 15 points.
+- Recommended length: English I small writing about 100 words; English I large writing 160-200 words; English II small writing about 100 words; English II large writing about 150 words.
 - If the user does not provide the original prompt, grade language and structure provisionally and mark task-completion scoring as provisional.
 
 When grading a user's essay, return:

@@ -24,6 +24,19 @@ Identify the exam track and writing task before scoring.
 
 If the user does not provide the original prompt, grade language and structure provisionally, but mark task-completion scoring as provisional.
 
+## Recommended Length
+
+Use these length targets when grading, revising, and generating model essays:
+
+| Exam track | Task | Recommended length |
+|---|---|---:|
+| English I | Part A small writing | about 100 words |
+| English I | Part B large writing | 160-200 words |
+| English II | Part A small writing | about 100 words |
+| English II | Part B large writing | about 150 words |
+
+When grading a user's essay, treat length as part of task completion and communicative adequacy. Do not mechanically punish a small deviation, but flag answers that are obviously too short, too thin, or far beyond the expected scope. When generating a model essay, keep the model within the recommended range unless the user explicitly asks for a shorter outline or an expanded teaching version.
+
 ## Band Standards
 
 Apply the same qualitative criteria across tasks, but map them to the correct point total.
@@ -69,6 +82,8 @@ Include:
 - 科目：English I / English II
 - 题型：小作文 / 大作文
 - 满分
+- 建议字数
+- 实际字数
 - 得分
 - 档位
 - 一句话诊断
@@ -140,6 +155,7 @@ Include:
 - 科目：English I / English II
 - 题型：小作文 / 大作文
 - 满分
+- 建议字数
 - 写作任务
 
 ### 题目要求拆解
