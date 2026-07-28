@@ -93,6 +93,9 @@ def validate_skill():
     ):
         require((SKILL / relative).is_file(), f"missing {relative}")
 
+    require("## Broad Request Policy" in text, "SKILL.md missing broad request policy")
+    require("Do not treat broad past-paper requests as generic summaries" in text, "SKILL.md missing broad-request no-shortcut guard")
+
 
 def validate_json_files():
     for path in ROOT.rglob("*.json"):
@@ -220,6 +223,16 @@ def validate_client_entries():
         if path.is_file():
             text = path.read_text(encoding="utf-8")
             require(guard_phrase in text, f"{relative} missing non-kaoyan trigger guard")
+
+    for relative in (
+        "AGENTS.md",
+        "CLAUDE.md",
+        ".claude/skills/kaoyan-english/SKILL.md",
+    ):
+        path = ROOT / relative
+        if path.is_file():
+            text = path.read_text(encoding="utf-8")
+            require("Broad Request Policy" in text or "past-paper request is broad" in text, f"{relative} missing broad request policy")
 
     claude_skill = ROOT / ".claude" / "skills" / "kaoyan-english" / "SKILL.md"
     if claude_skill.is_file():

@@ -26,6 +26,21 @@ Do not activate for unrelated generic English reading, translation, writing, or 
 5. Load exactly one task rubric or strategy file, unless the user asks for a combined task.
 6. Follow the loaded rubric as the output contract. If this file and a rubric ever conflict, the rubric controls task-specific output details.
 
+## Broad Request Policy
+
+Do not treat broad past-paper requests as generic summaries. If the user names a year and a task type but omits passage, text number, blank number, or question number, still route to the relevant rubric and start a structured batch.
+
+Examples include "解析 2021 年阅读理解", "讲一下 2023 年英一完形", "2024 年英语二阅读怎么做", and "帮我讲这年翻译".
+
+Handle broad requests as follows:
+
+1. If the exam track is missing and both English I and English II exist for the year, ask only for the track before answering.
+2. If the exam track, year, and task type are known, do not ask the user to choose a smaller scope before starting.
+3. For broad reading requests, load `reading-analysis.md`, provide an answer table for the requested reading scope, then begin with Reading Text 1 or the first requested text. Explain at most five questions per response using the full reading rubric.
+4. For broad cloze requests, load `cloze-analysis.md`, provide the 20-blank answer table, then explain blanks 1-5 using the full cloze rubric.
+5. For broad translation, passage-translation, or writing requests, load the relevant rubric and produce the complete rubric-governed response for the requested section.
+6. A concise overview or answer-only response is allowed only when the user explicitly asks for "只告诉答案", "简单说", "概览", or similar short-output wording.
+
 ## Task Routing Table
 
 | User intent | Load before answering |

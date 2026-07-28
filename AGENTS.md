@@ -24,13 +24,24 @@ Do not route unrelated generic reading, translation, writing, or coding tasks to
 
 ## Corpus Workflow
 
-1. Read `skills/kaoyan-english/references/corpus-index.json` first.
-2. Load only the requested exam, year, and section from `skills/kaoyan-english/references/papers/`.
-3. Use `question-map.json` to map question numbers to section files.
-4. Use `answers.json` only when the user asks for answers or explanations.
-5. For `translation.md` and `cloze.md`, treat `<!-- echo-enrichment:start -->` blocks as Echo-generated non-official teaching notes.
+1. Read `skills/kaoyan-english/references/index.json` first for direct lookup.
+2. Fall back to `skills/kaoyan-english/references/corpus-index.json` and year-level maps only when needed.
+3. Load only the requested exam, year, and section from `skills/kaoyan-english/references/papers/`.
+4. Use `question-map.json` to map question numbers to section files.
+5. Use `answers.json` only when the user asks for answers or explanations.
+6. For `translation.md` and `cloze.md`, treat `<!-- echo-enrichment:start -->` blocks as Echo-generated non-official teaching notes.
 
 Do not load the whole corpus into context unless a repository maintenance task genuinely requires it.
+
+## Broad Request Policy
+
+Do not answer broad past-paper requests with a generic short summary. If the user says things like "解析 2021 年阅读理解", "讲一下 2023 年英一完形", or "2024 年英语二阅读怎么做", first resolve the exam track, year, and task type, then route to the canonical rubric.
+
+- If the exam track is missing and both English I and English II exist for that year, ask only for the track.
+- If the exam track, year, and task type are known, start directly instead of asking the user to narrow the scope.
+- Broad reading requests should show an answer table for the requested reading scope, then begin with Reading Text 1 or the first requested text, explaining at most five questions with the full `reading-analysis.md` format.
+- Broad cloze requests should show the 20-blank answer table, then explain blanks 1-5 with the full `cloze-analysis.md` format.
+- Do not produce an answer-only or overview-style response unless the user explicitly asks for "只告诉答案", "简单说", "概览", or similar short-output wording.
 
 ## Repository Data Boundary
 
