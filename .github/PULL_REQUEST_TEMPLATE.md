@@ -6,17 +6,24 @@
 
 - [ ] 阅读理解
 - [ ] 完形填空
-- [ ] 翻译
+- [ ] 全文翻译
+- [ ] 翻译评分
 - [ ] 作文
 - [ ] 模拟题
 - [ ] 数据导入
+- [ ] 安装或客户端适配
 - [ ] 文档或工程配置
+
+## 修改记录
+
+- [ ] 已更新 `CHANGELOG.md`
 
 ## 验证
 
 - [ ] `python scripts/validate_repo.py`
 - [ ] `python -m unittest discover -s tests -v`
-- [ ] 未提交真题全文、原始 Word、机构材料或私人数据
+- [ ] `python skills/kaoyan-english/scripts/audit_corpus.py --skill skills/kaoyan-english`
+- [ ] 未提交原始 Word/PDF、机构材料、私人数据或无权再分发的资料
 
 ## 补充说明
 

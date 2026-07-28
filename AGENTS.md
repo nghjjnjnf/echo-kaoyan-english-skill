@@ -1,6 +1,6 @@
 # Echo_考研英语SKILL Agent Guide
 
-This repository is designed to be usable by Codex, Claude Code, Cursor, Trae, and other coding agents that can read project instructions.
+This repository is designed to be usable by Codex and Claude Code.
 
 ## Source Of Truth
 

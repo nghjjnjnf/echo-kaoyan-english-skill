@@ -1,4 +1,4 @@
 interface:
   display_name: "Echo_考研英语SKILL"
-  short_description: "考研英语真题逐题精析、作文评分批改与外刊模拟训练助手"
-  default_prompt: "使用 $kaoyan-english 讲解考研英语真题、批改作文或生成外刊模拟训练。"
+  short_description: "考研英语真题证据链解析、全文翻译与模拟训练助手"
+  default_prompt: "使用 $kaoyan-english 讲解考研英语真题、翻译阅读完形、批改作文或生成模拟训练。"

@@ -8,21 +8,23 @@
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
   <a href="./LICENSE"><img alt="Unlicense" src="https://img.shields.io/badge/license-Unlicense-E85D3F?style=flat-square"></a>
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill--only%20Plugin-111827?style=flat-square">
-  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code%20%7C%20Cursor%20%7C%20Trae-6B7280?style=flat-square">
+  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code-6B7280?style=flat-square">
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/issues"><img alt="Issues" src="https://img.shields.io/github/issues/nghjjnjnf/echo-kaoyan-english-skill?style=flat-square"></a>
 </p>
 
 <p align="center">
-  <strong>Echo_考研英语SKILL</strong> 是一个基于 2015–2025 四六级真题的备考助手的考研英语学习 skill。<br>
+  <strong>Echo_考研英语SKILL</strong> 是一个优先面向 Codex 和 Claude Code 的考研英语学习 skill。<br>
   它把真题知识库、证据链解析、全文翻译、翻译评分、作文批改和模拟训练整理成可复用的备考工作流。
 </p>
 
 <p align="center">
   <a href="#快速开始">快速开始</a> ·
-  <a href="#多-agent-使用">多 Agent 使用</a> ·
+  <a href="#安装方式">安装方式</a> ·
+  <a href="#客户端支持">客户端支持</a> ·
   <a href="#真题知识库">真题知识库</a> ·
   <a href="#典型用法">典型用法</a> ·
   <a href="#输出标准">输出标准</a> ·
+  <a href="#修改记录">修改记录</a> ·
   <a href="#贡献">贡献</a>
 </p>
 
@@ -48,13 +50,13 @@
 - **全文翻译可学习**：支持阅读和完形全文翻译，按段落给中文译文，并整理重点词汇、固定搭配和长难句。
 - **评分区分英一英二**：翻译和作文按题型实际分值、字数建议和评分档位处理，避免混用标准。
 - **模拟题可闭环**：先生成题目并隐藏答案，用户作答后再按真题风格讲解；需要时可把练习、答案和解析保存到本地记录。
-- **多客户端可用**：仓库内置 Codex、Claude Code、Cursor 和 Trae 入口，让同一套规则可以在不同 Agent 环境中调用。
+- **双客户端稳定支持**：仓库内置 Codex 原生 skill 入口和 Claude Code 项目/插件入口，优先保证这两条路径稳定。
 
 ## 适合谁
 
 - 正在系统刷考研英语真题，希望每道题都能追到原文证据的自学者。
 - 想把阅读、完形、翻译和作文讲解流程标准化的老师、助教或学习小组。
-- 希望在 Codex、Claude Code、Cursor 或 Trae 中搭建个人备考知识库和错题复盘流程的用户。
+- 希望在 Codex 或 Claude Code 中搭建个人备考知识库和错题复盘流程的用户。
 
 ## 功能地图
 
@@ -71,7 +73,7 @@
 
 ## 快速开始
 
-### 使用 Skill Installer
+Codex 推荐用 Skill Installer：
 
 在 Codex 中输入：
 
@@ -81,38 +83,58 @@ $skill-installer install https://github.com/nghjjnjnf/echo-kaoyan-english-skill/
 
 安装完成后重启 Codex，使新 skill 被发现。
 
-### 手动安装
+完整安装、校验和排错步骤见 [安装指南](./docs/INSTALLATION.md)。
 
-Windows PowerShell：
+## 安装方式
+
+### Codex
+
+推荐路径：
+
+```text
+$skill-installer install https://github.com/nghjjnjnf/echo-kaoyan-english-skill/tree/main/skills/kaoyan-english
+```
+
+本地开发路径：
 
 ```powershell
 git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills" | Out-Null
-Copy-Item -Recurse ".\echo-kaoyan-english-skill\skills\kaoyan-english" "$env:USERPROFILE\.codex\skills\kaoyan-english"
-python -m pip install -r ".\echo-kaoyan-english-skill\requirements.txt"
+cd echo-kaoyan-english-skill
+python .\scripts\install_codex_skill.py
 ```
 
-macOS 或 Linux：
+Codex 入口文件是 `.codex-plugin/plugin.json`、`skills/kaoyan-english/SKILL.md` 和 `skills/kaoyan-english/agents/openai.yaml`；本地开发安装脚本是 `scripts/install_codex_skill.py`。
+
+### Claude Code
+
+项目级使用：
 
 ```bash
 git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
-mkdir -p ~/.codex/skills
-cp -R echo-kaoyan-english-skill/skills/kaoyan-english ~/.codex/skills/kaoyan-english
-python3 -m pip install -r echo-kaoyan-english-skill/requirements.txt
+cd echo-kaoyan-english-skill
+claude
 ```
 
-## 多 Agent 使用
+插件级安装：
 
-本项目已经补充 Codex、Claude Code、Cursor 和 Trae 的项目入口。核心规则仍然只维护一份：`skills/kaoyan-english/SKILL.md`。
+```text
+/plugin marketplace add nghjjnjnf/echo-kaoyan-english-skill
+/plugin install echo-kaoyan-english-skill@echo-kaoyan-english
+/reload-plugins
+```
+
+Claude Code 入口文件是 `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md`、`.claude-plugin/plugin.json` 和 `.claude-plugin/marketplace.json`。
+
+## 客户端支持
+
+本项目当前优先支持 Codex 和 Claude Code。核心规则只维护一份：`skills/kaoyan-english/SKILL.md`。
 
 | 工具 | 入口文件 | 使用方式 |
 | --- | --- | --- |
 | Codex | `.codex-plugin/plugin.json`、`skills/kaoyan-english/SKILL.md` | 通过 Skill Installer 安装，或手动复制到 `~/.codex/skills/kaoyan-english` |
-| Claude Code | `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md` | 克隆仓库后在 Claude Code 中打开项目，按项目记忆与 skill wrapper 读取核心规则 |
-| Cursor | `AGENTS.md`、`.cursor/rules/kaoyan-english.mdc`、`.cursor/rules/kaoyan-english/RULE.md` | 在 Cursor 中打开仓库，Agent 会从项目规则进入核心 skill |
-| Trae | `.trae/project_rules.md`、`.trae/rules/kaoyan-english.md` | 在 Trae 中打开仓库，先读取项目规则，再读取核心 skill |
+| Claude Code | `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md`、`.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json` | 可作为项目级 skill 使用，也可通过 Claude Code marketplace/plugin 命令安装 |
 
-详细说明见 [多 Agent 使用指南](./docs/AGENT_COMPATIBILITY.md)。
+完整安装、校验和排错步骤见 [安装指南](./docs/INSTALLATION.md)。
 
 ## 真题知识库
 
@@ -247,10 +269,10 @@ echo-kaoyan-english-skill/
 |-- AGENTS.md
 |-- CLAUDE.md
 |-- .codex-plugin/plugin.json
+|-- .claude-plugin/
+|   |-- plugin.json
+|   `-- marketplace.json
 |-- .claude/skills/kaoyan-english/SKILL.md
-|-- .cursor/rules/kaoyan-english.mdc
-|-- .cursor/rules/kaoyan-english/RULE.md
-|-- .trae/project_rules.md
 |-- skills/kaoyan-english/
 |   |-- SKILL.md
 |   |-- agents/openai.yaml
@@ -270,6 +292,7 @@ echo-kaoyan-english-skill/
 |       `-- papers/
 |-- docs/
 |-- tests/
+|-- scripts/install_codex_skill.py
 `-- .github/
 ```
 
@@ -283,7 +306,7 @@ python -m unittest discover -s tests -v
 
 校验覆盖：
 
-- 插件清单、skill frontmatter、必需脚本和多 Agent 入口文件。
+- 插件清单、skill frontmatter、必需脚本和 Codex/Claude Code 入口文件。
 - 公开数据边界，避免把原始 Word、作文范文或不应公开的资料混入仓库。
 - 模拟题词数、答案隐藏、难度配比、练习记录和响应契约。
 - 阅读/完形/作文/全文翻译等核心输出结构的回归检查。
@@ -301,6 +324,10 @@ python -m unittest discover -s tests -v
 - [ ] 更稳健的多来源文档解析
 - [ ] 可复现的提示词评测集
 - [ ] 更多新题型专项规则
+
+## 修改记录
+
+所有对外可见的功能、文档、安装方式和客户端支持范围变更都会记录在 [CHANGELOG.md](./CHANGELOG.md)。后续提交前应同步更新该文件。
 
 ## 贡献
 

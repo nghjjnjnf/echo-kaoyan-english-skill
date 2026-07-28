@@ -30,6 +30,32 @@ def validate_manifest():
         require(bool(interface.get(field)), f"manifest interface missing {field}")
 
 
+def validate_claude_plugin():
+    plugin_path = ROOT / ".claude-plugin" / "plugin.json"
+    marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+    require(plugin_path.is_file(), "missing .claude-plugin/plugin.json")
+    require(marketplace_path.is_file(), "missing .claude-plugin/marketplace.json")
+    if not plugin_path.is_file() or not marketplace_path.is_file():
+        return
+
+    plugin = json.loads(plugin_path.read_text(encoding="utf-8"))
+    require(plugin.get("name") == "echo-kaoyan-english-skill", "Claude plugin name must be echo-kaoyan-english-skill")
+    require(bool(re.fullmatch(r"\d+\.\d+\.\d+", plugin.get("version", ""))), "Claude plugin version must use semantic versioning")
+    require(bool(plugin.get("description")), "Claude plugin missing description")
+    require(bool(plugin.get("author", {}).get("name")), "Claude plugin missing author name")
+
+    marketplace = json.loads(marketplace_path.read_text(encoding="utf-8"))
+    require(marketplace.get("name") == "echo-kaoyan-english", "Claude marketplace name must be echo-kaoyan-english")
+    require(bool(marketplace.get("owner", {}).get("name")), "Claude marketplace missing owner name")
+    plugins = marketplace.get("plugins", [])
+    require(isinstance(plugins, list) and len(plugins) == 1, "Claude marketplace must list exactly one plugin")
+    if plugins:
+        entry = plugins[0]
+        require(entry.get("name") == plugin.get("name"), "Claude marketplace plugin name must match plugin.json")
+        require(entry.get("source") == "./", "Claude marketplace plugin source must be ./")
+        require(entry.get("version") == plugin.get("version"), "Claude marketplace plugin version must match plugin.json")
+
+
 def validate_skill():
     path = SKILL / "SKILL.md"
     require(path.is_file(), "missing skills/kaoyan-english/SKILL.md")
@@ -69,6 +95,16 @@ def validate_json_files():
             ERRORS.append(f"invalid JSON: {path.relative_to(ROOT)}: {exc}")
 
 
+def validate_changelog():
+    path = ROOT / "CHANGELOG.md"
+    require(path.is_file(), "missing CHANGELOG.md")
+    if not path.is_file():
+        return
+    text = path.read_text(encoding="utf-8")
+    require("## 2026-07-28" in text, "CHANGELOG.md missing current project cleanup entry")
+    require("### Verified" in text, "CHANGELOG.md should record validation results")
+
+
 def validate_public_data_boundary():
     forbidden = []
     invalid_answers = []
@@ -101,29 +137,24 @@ def validate_public_data_boundary():
     require(not invalid_meta, "meta.json must not contain local source_docx paths: " + ", ".join(invalid_meta))
 
 
-def validate_agent_compatibility():
+def validate_client_entries():
     required_files = (
         "AGENTS.md",
         "CLAUDE.md",
+        ".claude-plugin/plugin.json",
+        ".claude-plugin/marketplace.json",
         ".claude/skills/kaoyan-english/SKILL.md",
-        ".cursor/rules/kaoyan-english.mdc",
-        ".cursor/rules/kaoyan-english/RULE.md",
-        ".trae/project_rules.md",
-        ".trae/rules/kaoyan-english.md",
-        "docs/AGENT_COMPATIBILITY.md",
+        "docs/INSTALLATION.md",
+        "scripts/install_codex_skill.py",
     )
     for relative in required_files:
-        require((ROOT / relative).is_file(), f"missing agent compatibility file: {relative}")
+        require((ROOT / relative).is_file(), f"missing client entry file: {relative}")
 
     canonical = "skills/kaoyan-english/SKILL.md"
     for relative in (
         "AGENTS.md",
         "CLAUDE.md",
-        ".cursor/rules/kaoyan-english.mdc",
-        ".cursor/rules/kaoyan-english/RULE.md",
-        ".trae/project_rules.md",
-        ".trae/rules/kaoyan-english.md",
-        "docs/AGENT_COMPATIBILITY.md",
+        "docs/INSTALLATION.md",
     ):
         path = ROOT / relative
         if path.is_file():
@@ -151,10 +182,6 @@ def validate_agent_compatibility():
     for relative in (
         "AGENTS.md",
         ".claude/skills/kaoyan-english/SKILL.md",
-        ".cursor/rules/kaoyan-english.mdc",
-        ".cursor/rules/kaoyan-english/RULE.md",
-        ".trae/project_rules.md",
-        ".trae/rules/kaoyan-english.md",
     ):
         path = ROOT / relative
         if path.is_file():
@@ -165,10 +192,7 @@ def validate_agent_compatibility():
     guard_phrase = "generic reading, translation, writing, or coding tasks"
     for relative in (
         "AGENTS.md",
-        ".cursor/rules/kaoyan-english.mdc",
-        ".cursor/rules/kaoyan-english/RULE.md",
-        ".trae/project_rules.md",
-        ".trae/rules/kaoyan-english.md",
+        ".claude/skills/kaoyan-english/SKILL.md",
     ):
         path = ROOT / relative
         if path.is_file():
@@ -182,25 +206,15 @@ def validate_agent_compatibility():
         require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "Claude skill wrapper name is incorrect")
         require("../../../skills/kaoyan-english/SKILL.md" in text, "Claude skill wrapper must link to the canonical skill")
 
-    cursor_rule = ROOT / ".cursor" / "rules" / "kaoyan-english.mdc"
-    if cursor_rule.is_file():
-        text = cursor_rule.read_text(encoding="utf-8")
-        require(text.startswith("---\n"), "Cursor rule must start with MDC frontmatter")
-        require("description:" in text and "alwaysApply:" in text, "Cursor rule frontmatter is incomplete")
-
-    cursor_rule_folder = ROOT / ".cursor" / "rules" / "kaoyan-english" / "RULE.md"
-    if cursor_rule_folder.is_file():
-        text = cursor_rule_folder.read_text(encoding="utf-8")
-        require(text.startswith("---\n"), "Cursor RULE.md must start with frontmatter")
-        require("description:" in text and "alwaysApply:" in text, "Cursor RULE.md frontmatter is incomplete")
-
 
 def main():
     validate_manifest()
+    validate_claude_plugin()
     validate_skill()
     validate_json_files()
+    validate_changelog()
     validate_public_data_boundary()
-    validate_agent_compatibility()
+    validate_client_entries()
     if ERRORS:
         for error in ERRORS:
             print(f"ERROR: {error}", file=sys.stderr)

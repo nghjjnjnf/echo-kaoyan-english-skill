@@ -23,7 +23,8 @@ python scripts/validate_repo.py
 python -m unittest discover -s tests -v
 ```
 
-5. 在 Pull Request 中写明问题、修改方式、验证结果和可能影响。
+5. 更新 `CHANGELOG.md`，记录本次对外可见的功能、文档、安装方式或客户端支持范围变化。
+6. 在 Pull Request 中写明问题、修改方式、验证结果和可能影响。
 
 ## Skill 修改原则
 

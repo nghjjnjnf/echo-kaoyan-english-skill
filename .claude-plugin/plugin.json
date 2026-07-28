@@ -1,0 +1,10 @@
+{
+  "name": "echo-kaoyan-english-skill",
+  "description": "Echo_考研英语SKILL：为 Claude Code 提供考研英语一/英语二真题证据链解析、全文翻译、作文批改和模拟训练能力。",
+  "version": "0.1.0",
+  "author": {
+    "name": "nghjjnjnf",
+    "email": "junyaozz@sjtu.edu.cn",
+    "url": "https://github.com/nghjjnjnf"
+  }
+}

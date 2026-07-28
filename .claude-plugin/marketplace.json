@@ -1,0 +1,22 @@
+{
+  "name": "echo-kaoyan-english",
+  "description": "考研英语 AI Agent skills marketplace.",
+  "owner": {
+    "name": "nghjjnjnf",
+    "email": "junyaozz@sjtu.edu.cn",
+    "url": "https://github.com/nghjjnjnf"
+  },
+  "plugins": [
+    {
+      "name": "echo-kaoyan-english-skill",
+      "source": "./",
+      "description": "考研英语一/英语二真题证据链解析、全文翻译、作文批改和模拟训练 skill.",
+      "version": "0.1.0",
+      "author": {
+        "name": "nghjjnjnf",
+        "email": "junyaozz@sjtu.edu.cn",
+        "url": "https://github.com/nghjjnjnf"
+      }
+    }
+  ]
+}
