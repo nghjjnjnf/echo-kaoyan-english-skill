@@ -6,6 +6,7 @@
 
 ### Changed
 
+- README 导航栏和主要模块标题加入小图标，提升 GitHub 项目主页的可读性和视觉层次。
 - 清理项目级内容边界旧说明，统一改为仓库数据边界、隐私数据和临时源文件边界说明。
 - `.codex-plugin/plugin.json` 移除旧字段，`corpus-index.json` 移除 `content_scope` 字段，保持项目元数据更简洁。
 - `skills/kaoyan-english/references/strategies/simulation-generation.md` 和 `fetch_source_article.py` 调整外刊来源说明，改为强调主题启发、事实核查和原创改编流程。
