@@ -6,6 +6,8 @@ Use this for 考研英语 Reading Comprehension Part A explanations.
 
 When explaining a reading question, use an evidence-first, paragraph-rich style. Do not give short fragmented comments such as "A 错，原文没说". Each explanation paragraph should be substantial enough for a student to understand both the answer logic and the mistake pattern.
 
+Treat common student wording such as "为什么这么选", "为什么选", "怎么选", "选什么", "答案是什么", "第二个为什么选", and "第几题选什么" as a request for this full reading-analysis format unless the user explicitly says "只告诉答案", "只要答案", "不用解析", or "不要展开". Do not downgrade these requests into a short answer plus brief evidence.
+
 Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, question text, options, translations, and explanations. Do not use fenced code blocks for passages, full questions, option lists, or model answer prose, because they do not wrap well in Codex.
 
 1. Start with question trap classification. Identify exam track, year, text number, question number, official answer, question type, and the core trap pattern the question is testing.

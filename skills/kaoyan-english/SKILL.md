@@ -30,7 +30,7 @@ Do not activate for unrelated generic English reading, translation, writing, or 
 
 | User intent | Load before answering |
 |---|---|
-| Reading Part A question explanation, option analysis, evidence, trap classification | `references/rubrics/reading-analysis.md` |
+| Reading Part A question explanation, option analysis, evidence, trap classification, or answer lookup with "为什么/怎么选/选什么" wording | `references/rubrics/reading-analysis.md` |
 | Cloze / 完形 / 完型 blank explanation | `references/rubrics/cloze-analysis.md` |
 | Full reading or cloze passage translation, vocabulary, fixed phrases, long sentences | `references/rubrics/passage-translation.md` |
 | Translation-question explanation or user translation grading | `references/rubrics/translation-analysis.md` |
@@ -61,6 +61,8 @@ If the user's wording is ambiguous:
 
 - Treat "第二题" as question `2` unless nearby context implies Text 2 or the second option.
 - Treat "第二篇", "Text 2", or "阅读二" as `reading-text-2`.
+- In reading tasks, treat "第 N 篇/Text N 的第 M 题", "第 N 篇阅读第 M 个", and similar wording as the M-th question inside that passage. For example, 2025 English I Reading Text 2 "第二个" means question 27, not option B, unless the user explicitly says "选项 B" or "第二个选项 B".
+- If the user asks a reading question with wording such as "为什么这么选", "为什么选", "怎么选", "选什么", or "答案是什么" and does not explicitly say "只告诉答案/不要解析", route to `reading-analysis.md` and produce the full reading explanation format. A concise answer is allowed only when the user explicitly requests answer-only output.
 - If a requested year is unavailable, state the indexed years and ask for the missing source.
 - If the user's claimed answer conflicts with `answers.json`, state the indexed answer first, then explain according to the indexed answer.
 
