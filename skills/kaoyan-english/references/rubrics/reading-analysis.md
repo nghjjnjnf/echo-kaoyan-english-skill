@@ -29,6 +29,27 @@ Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, qu
 
 Use exactly this structure.
 
+## Professional Style Reference
+
+Use the following as the professional style template for reading explanations. It is a style reference, not a replacement for the required section order above: keep `题目陷阱分类 -> 相关原文截取 -> 中文参考翻译 -> 完整题目 -> 题干在问什么 -> 其他选项为什么错 -> 为什么选 [Answer] -> 本题复盘`.
+
+The answer should read like a teacher walking the student through the evidence chain:
+
+- Begin with precise positioning: year, exam track, Text number, question number, indexed answer, question type, and core trap. Avoid vague openings such as "这题很简单".
+- In `相关原文截取`, quote the decisive excerpt and mark it directly in the English: `**...**（定位句：...）`, `**...**（辅助句：...）`, `**...**（转折：...）`, or `**...**（因果：...）`. The label should explain why the sentence matters, not merely name it.
+- In `题干在问什么`, explicitly separate what the question asks from what it does not ask. Use wording like: "它不是问……，而是问……". This prevents students from being pulled toward related but irrelevant passage details.
+- For each wrong option, first show the complete option, then write one developed paragraph explaining the option's surface meaning, the exact mismatch with the passage, and the trap type. Do not write one-line comments.
+- In `为什么选 [Answer]`, explain the correct option through exact synonym replacement and logical matching. Use compact mappings when helpful, such as `play the roles` 对应 `act him out`, then follow with a paragraph explaining why the match is complete.
+- In `本题复盘`, give a transferable method: how to locate evidence, what phrase or relation was decisive, and what trap pattern to watch for next time.
+
+Model phrasing pattern:
+
+> 题干不是问“这个方法带来了什么效果”，也不是问“学生最后写了什么”，而是问这种方法本身要求学生做什么。题干关键词是 `...`，回到原文后，真正解释这个方法的句子是 `...`。所以答案必须体现“...”，而不能只抓住后文出现过的相关词。
+>
+> [Correct option] 的意思是“...”。它准确对应原文里的 `...`。这里的 `...` 不是泛泛含义，而是指“...”。后文的 `...` 又进一步确认这一点。同义替换关系很清楚：选项中的 `...` 对应原文中的 `...`；选项中的 `...` 对应原文中的 `...`。所以这个选项不是凭感觉选的，而是对原文核心动作/态度/因果关系的准确概括。
+>
+> [Wrong option] 看起来容易迷惑人，因为原文确实提到过 `...`。但题干问的是 `...`，原文强调的是 `...`，不是 `...`。这个选项把“...”偷换成了“...”。陷阱类型：偷换概念 / 主体错误 / 无中生有 / 干扰词复现。
+
 ### 题目陷阱分类
 
 Include:
