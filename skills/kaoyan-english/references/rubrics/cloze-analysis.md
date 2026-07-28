@@ -24,6 +24,29 @@ Use ordinary Markdown paragraphs or blockquotes for all user-facing excerpts, qu
 
 Use exactly this structure.
 
+## Professional Style Reference
+
+Use the following as the professional style template for cloze explanations. It is a style reference, not a replacement for the required section order below: keep `空格陷阱分类 -> 相关原文截取 -> 中文参考翻译 -> 完整题目 -> 空格处需要什么 -> 其他选项为什么错 -> 为什么选 [Answer] -> 本空复盘`.
+
+The answer should read like a teacher showing how the blank is controlled by local grammar, collocation, semantic direction, and discourse logic:
+
+- Start each requested blank with a clear label such as `第 1 空`, then give `空格陷阱分类` with year, exam track, section, blank number, indexed answer, test point, and core trap.
+- In `相关原文截取`, display the full sentence containing the blank without ellipses. Mark the blank as `**___ 1 ___**（空格：...）`, and directly mark the controlling clues, such as `**levels out**（逻辑：...）` and `**decline**（逻辑：...）`.
+- In `中文参考翻译`, translate the quoted context naturally and preserve the same labels. The translation should help weaker students see the trend, contrast, cause, reference, or collocation without re-parsing the English.
+- In `完整题目`, keep the cloze-specific horizontal option layout. Put the four English options on one line and the four Chinese translations on the next line, so the student can compare options quickly.
+- In `空格处需要什么`, explain the needed part of speech, sentence role, subject or object, nearby controlling words, and the required semantic direction. This section should make the answer feel inevitable before option comparison begins.
+- In `其他选项为什么错`, analyze wrong options before the correct option. For each wrong option, show the complete option, give the Chinese meaning, explain the mismatch with grammar/collocation/logic, and label the trap type.
+- In `为什么选 [Answer]`, show the correct option and explain how it completes the sentence. Emphasize local evidence chains such as `peaks -> levels out -> decline`, `cause -> result`, `contrast -> correction`, or `pronoun -> referent`.
+- In `本空复盘`, give a short reusable method, such as "不要孤立看一个空，要把并列动词串起来看" or "先判断逻辑方向，再比较近义词".
+
+Model phrasing pattern:
+
+> 空格处需要一个不及物动词，主语是 `It`，指代前文的 `Fluid intelligence`。后面连续出现 `levels out` 和 `decline`，说明这里要表达一种发展趋势：先达到某个高点，之后维持一段时间，再慢慢下降。因此空格不能只是“变化”，而要能和后面的“持平、下降”构成完整曲线。
+>
+> [Wrong option] 的意思是“...”。它看起来像是在描述变化，但原文这里需要的是“...”，而不是“...”。如果填入这个词，就会破坏 `... -> ... -> ...` 的趋势链。陷阱类型：语义方向错误 / 搭配错误 / 逻辑关系错误。
+>
+> 选 [Answer]。`...` 作动词表示“...”，放入原句后是：……。这个逻辑正好和后文的 `...`、`...` 构成时间顺序上的变化曲线，所以它不是孤立词义正确，而是被上下文逻辑锁定。
+
 ### 空格陷阱分类
 
 Include:
