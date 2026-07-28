@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <strong>Echo_考研英语SKILL</strong> 是一个面向 Codex、Claude Code、Cursor 和 Trae 的考研英语学习 skill。<br>
+  <strong>Echo_考研英语SKILL</strong> 是一个基于 2015–2025 四六级真题的备考助手的考研英语学习 skill。<br>
   它把真题知识库、证据链解析、全文翻译、翻译评分、作文批改和模拟训练整理成可复用的备考工作流。
 </p>
 
