@@ -91,11 +91,53 @@ def validate_public_data_boundary():
     require(not invalid_meta, "meta.json 不应包含本机原始 Word 路径: " + ", ".join(invalid_meta))
 
 
+def validate_agent_compatibility():
+    required_files = (
+        "AGENTS.md",
+        "CLAUDE.md",
+        ".claude/skills/kaoyan-english/SKILL.md",
+        ".cursor/rules/kaoyan-english.mdc",
+        ".trae/project_rules.md",
+        ".trae/rules/kaoyan-english.md",
+        "docs/AGENT_COMPATIBILITY.md",
+    )
+    for relative in required_files:
+        require((ROOT / relative).is_file(), f"missing agent compatibility file: {relative}")
+
+    canonical = "skills/kaoyan-english/SKILL.md"
+    for relative in (
+        "AGENTS.md",
+        "CLAUDE.md",
+        ".cursor/rules/kaoyan-english.mdc",
+        ".trae/project_rules.md",
+        ".trae/rules/kaoyan-english.md",
+        "docs/AGENT_COMPATIBILITY.md",
+    ):
+        path = ROOT / relative
+        if path.is_file():
+            text = path.read_text(encoding="utf-8")
+            require(canonical in text, f"{relative} should point to {canonical}")
+
+    claude_skill = ROOT / ".claude" / "skills" / "kaoyan-english" / "SKILL.md"
+    if claude_skill.is_file():
+        text = claude_skill.read_text(encoding="utf-8")
+        require(text.startswith("---\n"), "Claude skill wrapper must start with YAML frontmatter")
+        require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "Claude skill wrapper name is incorrect")
+        require("../../../skills/kaoyan-english/SKILL.md" in text, "Claude skill wrapper must link to the canonical skill")
+
+    cursor_rule = ROOT / ".cursor" / "rules" / "kaoyan-english.mdc"
+    if cursor_rule.is_file():
+        text = cursor_rule.read_text(encoding="utf-8")
+        require(text.startswith("---\n"), "Cursor rule must start with MDC frontmatter")
+        require("description:" in text and "alwaysApply:" in text, "Cursor rule frontmatter is incomplete")
+
+
 def main():
     validate_manifest()
     validate_skill()
     validate_json_files()
     validate_public_data_boundary()
+    validate_agent_compatibility()
     if ERRORS:
         for error in ERRORS:
             print(f"ERROR: {error}", file=sys.stderr)

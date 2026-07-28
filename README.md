@@ -8,6 +8,7 @@
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-E85D3F?style=flat-square"></a>
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill--only%20Plugin-111827?style=flat-square">
+  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code%20%7C%20Cursor%20%7C%20Trae-6B7280?style=flat-square">
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/issues"><img alt="Issues" src="https://img.shields.io/github/issues/nghjjnjnf/echo-kaoyan-english-skill?style=flat-square"></a>
 </p>
 
@@ -18,6 +19,7 @@
 
 <p align="center">
   <a href="#快速开始">快速开始</a> ·
+  <a href="#多-agent-使用">多 Agent 使用</a> ·
   <a href="#真题知识库">真题知识库</a> ·
   <a href="#典型用法">典型用法</a> ·
   <a href="#输出标准">输出标准</a> ·
@@ -31,7 +33,8 @@
 项目采用“公开基础知识库 + 本地扩展导入”的设计：
 
 - 公开仓库包含维护者声明有权发布的基础真题知识库。
-- 基础知识库只保留题面文本与客观题答案；不包含解析、翻译参考答案、作文范文或原始 Word。
+- 基础知识库包含题面文本、题号映射、客观题答案，以及 Echo 生成的翻译参考译文、翻译/完形整体难点评析和易错点总结。
+- 基础知识库不包含逐题官方解析、作文范文、原始 Word 或第三方课程材料。
 - 用户仍可通过导入脚本在本地扩展自己的资料。
 - 阅读、完形、翻译、作文和模拟题分别使用独立规则，避免所有题型套同一个模板。
 
@@ -78,6 +81,19 @@ mkdir -p ~/.codex/skills
 cp -R echo-kaoyan-english-skill/skills/kaoyan-english ~/.codex/skills/kaoyan-english
 python3 -m pip install -r echo-kaoyan-english-skill/requirements.txt
 ```
+
+## 多 Agent 使用
+
+本项目已经补充 Codex、Claude Code、Cursor 和 Trae 的项目入口。核心规则仍然只维护一份：`skills/kaoyan-english/SKILL.md`。
+
+| 工具 | 入口文件 | 使用方式 |
+| --- | --- | --- |
+| Codex | `.codex-plugin/plugin.json`、`skills/kaoyan-english/SKILL.md` | 通过 Skill Installer 安装，或手动复制到 `~/.codex/skills/kaoyan-english` |
+| Claude Code | `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md` | 克隆仓库后在 Claude Code 中打开项目，按项目记忆与 skill wrapper 读取核心规则 |
+| Cursor | `AGENTS.md`、`.cursor/rules/kaoyan-english.mdc` | 在 Cursor 中打开仓库，Agent 会从项目规则进入核心 skill |
+| Trae | `.trae/project_rules.md`、`.trae/rules/kaoyan-english.md` | 在 Trae 中打开仓库，先读取项目规则，再读取核心 skill |
+
+详细说明见 [多 Agent 使用指南](./docs/AGENT_COMPATIBILITY.md)。
 
 ## 真题知识库
 
@@ -203,7 +219,12 @@ skill 采用渐进式加载：`SKILL.md` 只负责路由和核心约束，阅读
 
 ```text
 echo-kaoyan-english-skill/
+|-- AGENTS.md
+|-- CLAUDE.md
 |-- .codex-plugin/plugin.json
+|-- .claude/skills/kaoyan-english/SKILL.md
+|-- .cursor/rules/kaoyan-english.mdc
+|-- .trae/project_rules.md
 |-- skills/kaoyan-english/
 |   |-- SKILL.md
 |   |-- agents/openai.yaml
