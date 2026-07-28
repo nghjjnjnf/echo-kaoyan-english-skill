@@ -6,6 +6,9 @@
 
 ### Changed
 
+- 清理项目级内容边界旧说明，统一改为仓库数据边界、隐私数据和临时源文件边界说明。
+- `.codex-plugin/plugin.json` 移除旧字段，`corpus-index.json` 移除 `content_scope` 字段，保持项目元数据更简洁。
+- `skills/kaoyan-english/references/strategies/simulation-generation.md` 和 `fetch_source_article.py` 调整外刊来源说明，改为强调主题启发、事实核查和原创改编流程。
 - 将 `skills/kaoyan-english/SKILL.md` 重构为路由器式入口：主文件只保留触发边界、任务路由、知识库查找顺序、答案安全和全局渲染规则。
 - 阅读、完形、全文翻译、翻译评分、作文和模拟题的具体输出要求统一交给对应 `references/rubrics/` 或 `references/strategies/` 文件，降低规则漂移和上下文浪费。
 - `scripts/validate_repo.py` 增加 router-style 约束，防止主 `SKILL.md` 再次膨胀并重复题型细则。
@@ -24,6 +27,7 @@
 
 ### Removed
 
+- 删除仓库根目录和 skill 内部的旧说明文件。
 - 删除 Cursor / Trae 适配入口，避免对外呈现不再优先维护的客户端支持范围。
 - 删除重复的多 Agent 兼容说明文档：`docs/AGENT_COMPATIBILITY.md`。
 

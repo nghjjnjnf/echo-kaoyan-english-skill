@@ -23,7 +23,7 @@
 - [ ] `python scripts/validate_repo.py`
 - [ ] `python -m unittest discover -s tests -v`
 - [ ] `python skills/kaoyan-english/scripts/audit_corpus.py --skill skills/kaoyan-english`
-- [ ] 未提交原始 Word/PDF、机构材料、私人数据或无权再分发的资料
+- [ ] 未提交本机路径、临时源文件或私人数据
 
 ## 补充说明
 

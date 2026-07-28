@@ -24,7 +24,6 @@ def validate_manifest():
     require(data.get("name") == "kaoyan-english", "plugin name must be kaoyan-english")
     require(bool(re.fullmatch(r"\d+\.\d+\.\d+", data.get("version", ""))), "version must use semantic versioning")
     require(data.get("skills") == "./skills/", "skills path must be ./skills/")
-    require(data.get("license") == "Unlicense", "manifest license must be Unlicense")
     interface = data.get("interface", {})
     for field in ("displayName", "shortDescription", "longDescription", "developerName", "category"):
         require(bool(interface.get(field)), f"manifest interface missing {field}")
@@ -137,7 +136,7 @@ def validate_public_data_boundary():
                 data = json.loads(path.read_text(encoding="utf-8"))
                 if "source_docx" in data:
                     invalid_meta.append(relative)
-    require(not forbidden, "public repo contains excluded raw data files: " + ", ".join(forbidden))
+    require(not forbidden, "repository contains excluded source files: " + ", ".join(forbidden))
     require(not invalid_paper_files, "paper corpus contains unsupported file types: " + ", ".join(invalid_paper_files))
     require(not invalid_answers, "answers.json must not contain writing answers: " + ", ".join(invalid_answers))
     require(not invalid_meta, "meta.json must not contain local source_docx paths: " + ", ".join(invalid_meta))

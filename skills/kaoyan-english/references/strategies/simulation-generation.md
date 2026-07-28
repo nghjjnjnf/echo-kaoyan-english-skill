@@ -30,10 +30,10 @@ Prefer sources that are moderate in difficulty, education-friendly, and not pack
 
 | Priority | Source | Use mode | Notes |
 |---|---|---|---|
-| 1 | VOA Learning English | adaptable | Default source for readable news-style English. Check whether a page contains third-party wire material before reuse. |
+| 1 | VOA Learning English | adaptable | Default source for readable news-style English. |
 | 2 | Simple English Wikipedia | adaptable with attribution | Good for background, science, culture, society, and general knowledge topics. Keep source attribution in metadata. |
 | 3 | The Conversation | theme only | Use title, topic, and public facts for inspiration; write an original practice passage instead of rewriting the article. |
-| 4 | BBC, NPR, Smithsonian, similar sources | theme only | Use only as topic inspiration and fact checking; do not reproduce or closely paraphrase full articles. |
+| 4 | BBC, NPR, Smithsonian, similar sources | theme only | Use as topic inspiration and fact checking, then write a new practice passage. |
 | Avoid | News in Levels, Breaking News English | restricted practice source | Useful for personal reading, but do not repackage their full learning materials as this skill's own exercise. |
 
 When the user provides a URL, run `scripts/fetch_source_article.py <url>` when possible. If the script returns `source_mode=theme_only`, generate a new original passage based on the topic instead of adapting the article closely.
@@ -115,7 +115,7 @@ If the user asks to record, save, review later, or add the exercise to a local r
    - Windows: `%USERPROFILE%\.codex\kaoyan-english\practice-records`
    - macOS/Linux: `~/.codex/kaoyan-english/practice-records`
 4. Tell the user the saved JSON and Markdown paths.
-5. Do not commit practice records to the public repository.
+5. Keep practice records local.
 
 For later review:
 

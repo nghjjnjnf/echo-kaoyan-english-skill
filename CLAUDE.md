@@ -24,4 +24,4 @@ The Claude Code skill wrapper at `.claude/skills/kaoyan-english/SKILL.md` points
 2. Read `skills/kaoyan-english/references/corpus-index.json`, then only the needed section files.
 3. Preserve the required answer formats from the rubric files under `skills/kaoyan-english/references/rubrics/`.
 4. Clearly label Echo-generated translation references and difficulty notes as non-official.
-5. Do not add raw Word/PDF papers or third-party materials to the public repository.
+5. Do not add private data, local paths, or temporary source files to the repository.

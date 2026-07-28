@@ -32,9 +32,9 @@ Do not route unrelated generic reading, translation, writing, or coding tasks to
 
 Do not load the whole corpus into context unless a repository maintenance task genuinely requires it.
 
-## Public Data Boundary
+## Repository Data Boundary
 
-The repository may include the maintained public knowledge base, objective answers, and Echo-generated teaching notes. Do not add raw Word/PDF source files, third-party course notes, or unverified copyrighted material.
+The repository may include the maintained knowledge base, objective answers, and Echo-generated teaching notes. Do not add private data, local paths, or temporary source files.
 
 ## Validation
 

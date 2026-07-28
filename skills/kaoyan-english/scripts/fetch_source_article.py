@@ -14,7 +14,7 @@ SOURCE_POLICIES = {
     "learningenglish.voanews.com": {
         "label": "VOA Learning English",
         "mode": "adaptable",
-        "note": "Preferred source for moderate-difficulty educational English. Check each page for third-party wire content before reuse.",
+        "note": "Preferred source for moderate-difficulty educational English.",
     },
     "simple.wikipedia.org": {
         "label": "Simple English Wikipedia",

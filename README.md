@@ -6,7 +6,6 @@
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/actions/workflows/validate.yml"><img alt="校验状态" src="https://img.shields.io/github/actions/workflow/status/nghjjnjnf/echo-kaoyan-english-skill/validate.yml?branch=main&style=flat-square&label=%E6%A0%A1%E9%AA%8C"></a>
   <img alt="版本" src="https://img.shields.io/badge/version-0.1.0-13795B?style=flat-square">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
-  <a href="./LICENSE"><img alt="Unlicense" src="https://img.shields.io/badge/license-Unlicense-E85D3F?style=flat-square"></a>
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill--only%20Plugin-111827?style=flat-square">
   <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code-6B7280?style=flat-square">
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/issues"><img alt="Issues" src="https://img.shields.io/github/issues/nghjjnjnf/echo-kaoyan-english-skill?style=flat-square"></a>
@@ -34,11 +33,10 @@
 
 它不是简单的资料合集，而是一套面向 AI Agent 的考研英语备考规则层：同一份知识库可以在多个客户端中复用，同一套输出契约可以约束阅读、完形、翻译、作文和模拟题的回答质量。
 
-项目采用“公开基础知识库 + 本地扩展导入”的设计：
+项目采用“基础知识库 + 本地扩展导入”的设计：
 
-- 公开仓库包含维护者声明有权发布的基础真题知识库。
+- 仓库包含基础真题知识库。
 - 基础知识库包含题面文本、题号映射、客观题答案，以及 Echo 生成的翻译参考译文、翻译/完形整体难点评析和易错点总结。
-- 基础知识库不包含逐题官方解析、作文范文、原始 Word 或第三方课程材料。
 - 用户仍可通过导入脚本在本地扩展自己的资料。
 - 阅读、完形、翻译、作文和模拟题分别使用独立规则，避免所有题型套同一个模板。
 
@@ -138,16 +136,14 @@ Claude Code 入口文件是 `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.m
 
 ## 真题知识库
 
-仓库随附维护者声明有权发布的基础真题知识库，位于 `skills/kaoyan-english/references/papers/`。
+仓库随附基础真题知识库，位于 `skills/kaoyan-english/references/papers/`。
 
 当前公开知识库范围：
 
 - 英语一：2010-2026 年。
 - 英语二：2010-2026 年。
 - 包含：题面文本、题号映射、客观题答案、Echo 生成的翻译参考译文、翻译/完形整体难点评析与易错点总结。
-- 不包含：逐题官方解析、作文范文、原始 Word 文件。
-
-如果你要补充自己的资料，请使用自己合法取得的 DOCX 文件进行本地导入。导入结果可作为本地扩展使用，提交到公开仓库前应确认再分发权限。
+如果你要补充自己的资料，可以使用 DOCX 文件进行本地导入。导入结果可作为本地扩展使用。
 
 导入英语一：
 
@@ -307,7 +303,7 @@ python -m unittest discover -s tests -v
 校验覆盖：
 
 - 插件清单、skill frontmatter、必需脚本和 Codex/Claude Code 入口文件。
-- 公开数据边界，避免把原始 Word、作文范文或不应公开的资料混入仓库。
+- 数据结构边界，避免把本地源文件、作文范文或临时资料混入仓库。
 - 模拟题词数、答案隐藏、难度配比、练习记录和响应契约。
 - 阅读/完形/作文/全文翻译等核心输出结构的回归检查。
 
