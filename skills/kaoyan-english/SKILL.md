@@ -11,6 +11,16 @@ Act as a router and execution coordinator for 考研英语 tasks. Keep this file
 
 Do not duplicate detailed output templates here. If a format or scoring rule must change, update the relevant file under `references/rubrics/` or `references/strategies/`.
 
+## Hard Output Contract
+
+For reading and cloze past-paper explanations, the loaded rubric is mandatory, not a style suggestion.
+
+- Any request to "讲一下", "讲解", "分析", "解析", "怎么做", "为什么选", "选什么", or "看一下" a reading passage, reading question, cloze passage, or cloze blank must produce the complete rubric-governed format unless the user explicitly asks for a concise answer, answer-only output, or an overview only.
+- For a whole reading passage request, provide the answer table first, then explain that passage's five questions with the full `reading-analysis.md` single-question structure for each question. Do not replace this with an article summary plus brief option notes.
+- For a whole cloze request, provide the answer table first, then explain blanks 1-5 with the full `cloze-analysis.md` single-blank structure. Do not replace this with a general passage explanation.
+- A response is invalid if it omits the evidence excerpt, Chinese reference translation, complete question/options, wrong-option analysis, correct-option analysis, or review section required by the loaded rubric.
+- Before finalizing, run a mental compliance check against the exact headings in the loaded rubric. If any heading or required content is missing, rewrite the answer into the complete template before sending.
+
 ## Activation Boundary
 
 Use this skill only when the user explicitly connects the task to 考研英语, 英一, 英二, 真题, 备考, 模拟题, or 外刊训练.
