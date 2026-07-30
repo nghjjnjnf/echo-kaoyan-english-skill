@@ -1,6 +1,6 @@
 # 安装指南
 
-本文只维护当前优先支持的两条路径：Codex 和 Claude Code。本项目会优先保证这两条路径稳定。
+本文只维护当前优先支持的路径：Codex、Claude Code 和 CodeBuddy / WorkBuddy。本项目会优先保证这些路径稳定。
 
 ## Codex
 
@@ -115,6 +115,32 @@ claude --plugin-dir .
 /reload-plugins
 ```
 
+## CodeBuddy / WorkBuddy
+
+CodeBuddy / WorkBuddy 可按项目级 skill 使用。将仓库克隆到本地后，用 CodeBuddy / WorkBuddy 打开该目录即可：
+
+```bash
+git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
+cd echo-kaoyan-english-skill
+```
+
+项目级入口文件：
+
+- `.codebuddy/skills/kaoyan-english/SKILL.md`
+- `skills/kaoyan-english/SKILL.md`
+
+`.codebuddy/skills/kaoyan-english/SKILL.md` 是兼容 wrapper，实际规则仍指向 `skills/kaoyan-english/SKILL.md`。启动后可以直接问：
+
+```text
+讲解 2025 年英一阅读 Text 1 第 21 题。
+```
+
+如果没有自动触发，尝试显式调用：
+
+```text
+使用 kaoyan-english skill，讲解 2025 年英一阅读 Text 1 第 21 题。
+```
+
 ## 常见问题
 
 ### 安装后不触发怎么办
@@ -129,6 +155,7 @@ claude --plugin-dir .
 
 - Codex 是否已经重启。
 - Claude Code 是否执行了 `/reload-plugins`。
+- CodeBuddy / WorkBuddy 是否是在仓库根目录打开，并且能读取 `.codebuddy/skills/kaoyan-english/SKILL.md`。
 - 问题里是否包含考研英语、英一、英二、阅读、完形、翻译、作文、模拟题等明确语境。
 
 ### 能不能直接把整个仓库复制到 skill 目录

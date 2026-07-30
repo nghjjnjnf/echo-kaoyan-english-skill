@@ -172,6 +172,7 @@ def validate_client_entries():
         ".claude-plugin/plugin.json",
         ".claude-plugin/marketplace.json",
         ".claude/skills/kaoyan-english/SKILL.md",
+        ".codebuddy/skills/kaoyan-english/SKILL.md",
         "docs/INSTALLATION.md",
         "scripts/install_codex_skill.py",
     )
@@ -210,6 +211,7 @@ def validate_client_entries():
     for relative in (
         "AGENTS.md",
         ".claude/skills/kaoyan-english/SKILL.md",
+        ".codebuddy/skills/kaoyan-english/SKILL.md",
     ):
         path = ROOT / relative
         if path.is_file():
@@ -221,6 +223,7 @@ def validate_client_entries():
     for relative in (
         "AGENTS.md",
         ".claude/skills/kaoyan-english/SKILL.md",
+        ".codebuddy/skills/kaoyan-english/SKILL.md",
     ):
         path = ROOT / relative
         if path.is_file():
@@ -231,6 +234,7 @@ def validate_client_entries():
         "AGENTS.md",
         "CLAUDE.md",
         ".claude/skills/kaoyan-english/SKILL.md",
+        ".codebuddy/skills/kaoyan-english/SKILL.md",
     ):
         path = ROOT / relative
         if path.is_file():
@@ -249,6 +253,14 @@ def validate_client_entries():
         require(text.startswith("---\n"), "Claude skill wrapper must start with YAML frontmatter")
         require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "Claude skill wrapper name is incorrect")
         require("../../../skills/kaoyan-english/SKILL.md" in text, "Claude skill wrapper must link to the canonical skill")
+
+    codebuddy_skill = ROOT / ".codebuddy" / "skills" / "kaoyan-english" / "SKILL.md"
+    if codebuddy_skill.is_file():
+        text = codebuddy_skill.read_text(encoding="utf-8")
+        require(text.startswith("---\n"), "CodeBuddy skill wrapper must start with YAML frontmatter")
+        require(re.search(r"(?m)^name:\s*kaoyan-english\s*$", text), "CodeBuddy skill wrapper name is incorrect")
+        require("../../../skills/kaoyan-english/SKILL.md" in text, "CodeBuddy skill wrapper must link to the canonical skill")
+        require("CodeBuddy / WorkBuddy" in text, "CodeBuddy skill wrapper must mention CodeBuddy / WorkBuddy")
 
 
 def main():

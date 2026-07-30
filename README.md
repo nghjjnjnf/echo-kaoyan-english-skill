@@ -7,12 +7,12 @@
   <img alt="版本" src="https://img.shields.io/badge/version-0.1.0-13795B?style=flat-square">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square">
   <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill--only%20Plugin-111827?style=flat-square">
-  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code-6B7280?style=flat-square">
+  <img alt="Agent Ready" src="https://img.shields.io/badge/Agent-Codex%20%7C%20Claude%20Code%20%7C%20CodeBuddy-6B7280?style=flat-square">
   <a href="https://github.com/nghjjnjnf/echo-kaoyan-english-skill/issues"><img alt="Issues" src="https://img.shields.io/github/issues/nghjjnjnf/echo-kaoyan-english-skill?style=flat-square"></a>
 </p>
 
 <p align="center">
-  <strong>Echo_考研英语SKILL</strong> 是一个优先面向 Codex 和 Claude Code 的考研英语学习 skill。<br>
+  <strong>Echo_考研英语SKILL</strong> 是一个优先面向 Codex、Claude Code 和 CodeBuddy / WorkBuddy 的考研英语学习 skill。<br>
   它把真题知识库、证据链解析、全文翻译、翻译评分、作文批改和模拟训练整理成可复用的备考工作流。
 </p>
 
@@ -58,7 +58,7 @@
 
 - 正在系统刷考研英语真题，希望每道题都能追到原文证据的自学者。
 - 想把阅读、完形、翻译和作文讲解流程标准化的老师、助教或学习小组。
-- 希望在 Codex 或 Claude Code 中搭建个人备考知识库和错题复盘流程的用户。
+- 希望在 Codex、Claude Code 或 CodeBuddy / WorkBuddy 中搭建个人备考知识库和错题复盘流程的用户。
 
 ## 🗺️ 功能地图
 
@@ -75,7 +75,7 @@
 
 ## 🚀 快速开始
 
-最简单的方法：把这个 GitHub 仓库地址直接拖给 Codex 或 Claude Code，让 Agent 读取项目并按安装说明启用 skill。
+最简单的方法：把这个 GitHub 仓库地址直接拖给 Codex、Claude Code 或 CodeBuddy / WorkBuddy，让 Agent 读取项目并按安装说明启用 skill。
 
 Codex 推荐用 Skill Installer：
 
@@ -129,14 +129,32 @@ claude
 
 Claude Code 入口文件是 `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md`、`.claude-plugin/plugin.json` 和 `.claude-plugin/marketplace.json`。
 
+### CodeBuddy / WorkBuddy
+
+项目级使用：
+
+```bash
+git clone https://github.com/nghjjnjnf/echo-kaoyan-english-skill.git
+cd echo-kaoyan-english-skill
+```
+
+在 CodeBuddy / WorkBuddy 中打开这个仓库后，项目级 skill 入口位于 `.codebuddy/skills/kaoyan-english/SKILL.md`，它会指向同一份核心规则 `skills/kaoyan-english/SKILL.md`。
+
+可以用下面的问题测试：
+
+```text
+讲解 2024 年英一阅读 Text 2。
+```
+
 ## 🖥️ 客户端支持
 
-本项目当前优先支持 Codex 和 Claude Code。核心规则只维护一份：`skills/kaoyan-english/SKILL.md`。
+本项目当前优先支持 Codex、Claude Code 和 CodeBuddy / WorkBuddy。核心规则只维护一份：`skills/kaoyan-english/SKILL.md`。
 
 | 工具 | 入口文件 | 使用方式 |
 | --- | --- | --- |
 | Codex | `.codex-plugin/plugin.json`、`skills/kaoyan-english/SKILL.md` | 通过 Skill Installer 安装，或手动复制到 `~/.codex/skills/kaoyan-english` |
 | Claude Code | `CLAUDE.md`、`.claude/skills/kaoyan-english/SKILL.md`、`.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json` | 可作为项目级 skill 使用，也可通过 Claude Code marketplace/plugin 命令安装 |
+| CodeBuddy / WorkBuddy | `.codebuddy/skills/kaoyan-english/SKILL.md`、`skills/kaoyan-english/SKILL.md` | 作为项目级 skill 使用；打开仓库后由 `.codebuddy/skills/` 入口指向核心规则 |
 
 完整安装、校验和排错步骤见 [安装指南](./docs/INSTALLATION.md)。
 
@@ -278,6 +296,7 @@ echo-kaoyan-english-skill/
 |   |-- plugin.json
 |   `-- marketplace.json
 |-- .claude/skills/kaoyan-english/SKILL.md
+|-- .codebuddy/skills/kaoyan-english/SKILL.md
 |-- skills/kaoyan-english/
 |   |-- SKILL.md
 |   |-- agents/openai.yaml
@@ -313,7 +332,7 @@ python -m unittest discover -s tests -v
 
 校验覆盖：
 
-- 插件清单、skill frontmatter、必需脚本和 Codex/Claude Code 入口文件。
+- 插件清单、skill frontmatter、必需脚本和 Codex/Claude Code/CodeBuddy 入口文件。
 - 数据结构边界，避免把本地源文件、作文范文或临时资料混入仓库。
 - 模拟题词数、答案隐藏、难度配比、练习记录和响应契约。
 - 阅读/完形/作文/全文翻译等核心输出结构的回归检查。

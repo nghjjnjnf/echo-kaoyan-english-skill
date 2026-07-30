@@ -1,6 +1,6 @@
 # Echo_考研英语SKILL Agent Guide
 
-This repository is designed to be usable by Codex and Claude Code.
+This repository is designed to be usable by Codex, Claude Code, and CodeBuddy / WorkBuddy project-level skills.
 
 ## Source Of Truth
 

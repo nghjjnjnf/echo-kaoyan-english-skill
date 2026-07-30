@@ -36,6 +36,7 @@
 
 ### Added
 
+- 新增 CodeBuddy / WorkBuddy 项目级 skill wrapper：`.codebuddy/skills/kaoyan-english/SKILL.md`，指向同一份核心规则。
 - 新增 Claude Code 插件结构：`.claude-plugin/plugin.json` 与 `.claude-plugin/marketplace.json`。
 - 新增统一安装指南：`docs/INSTALLATION.md`。
 - 新增 Codex 本地安装脚本：`scripts/install_codex_skill.py`。
